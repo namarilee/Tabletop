@@ -8,46 +8,55 @@
 import SwiftUI
 
 struct SplashPage: View {
-    @State private var email = "test@test.com"
-    @State private var password = "Testing123!"
-    @StateObject private var userViewModel = UserViewModel()
+    
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Spacer()
-                Text("tabletop")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(red: 145.0 / 255.0, green: 143.0 / 255.0, blue: 240.0 / 255.0))
-                TextField("Email", text: $email)
-                TextField("Password", text: $password)
+            ZStack {
+                Color("lightPurpleBG").ignoresSafeArea()
                 
-                NavigationLink(destination: TodayMealPage()) {
-                    Text("Get started")
-                    .frame(width: 200, height: 100, alignment: .center)
-                    .background(Color.black)
-                    .foregroundColor(Color.white)
-                }
-                
-                
-                Text("Already have an account?")
-                Button("Sign in") {
+                VStack {
+                    Spacer()
+                    Text("tabletop")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("ttPurple"))
                     
-                }
-                Button("Create account") {
-                    Task {
-                        await userViewModel.signUp(email: email, password: password)
+                    
+                    Spacer()
+                    NavigationLink(destination: CreateAccountPage()) {
+                        Text("Get started")
+                            .font(.title2)
+                            .frame(width: 311, height: 48, alignment: .center)
+                            .background(Color("ttBlack"))
+                            .foregroundColor(Color.white)
+                            .cornerRadius(20)
                     }
+                    
+                    Spacer()
+                        .frame(height: 50)
+                    
+                    Text("Already have an account?")
+                    NavigationLink(destination: CreateAccountPage()) {
+                        Text("Sign in")
+                            .font(.title3)
+                            .frame(width: 136, height: 33, alignment: .center)
+                            .background(Color.white)
+                            .foregroundColor(Color.black)
+                            .cornerRadius(13)
+                    }
+                    
+                    
+                    Spacer()
                 }
-                .disabled(email.isEmpty || password.isEmpty)
-                Spacer()
             }
-            .padding()
-            .background(Color(red: 244.0 / 255.0, green: 244.0 / 255.0, blue: 255.0 / 255.0))
+            //.padding()
         }
-     //   .foregroundColor(Color(red: 244.0, green: 244.0, blue: 255.0, opacity: 1.0))
+        .background(Color("lightPurpleBG"))
+        .ignoresSafeArea()
     }
+        
+
 }
 
 #Preview {

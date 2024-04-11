@@ -15,7 +15,7 @@ struct TodayMealPage: View {
                 .foregroundColor(Color("ttPurple"))
                 
         }
-        .background(Color(.lightPurpleBG))
+        .background(Color("lightPurpleBG"))
     }
 }
 
