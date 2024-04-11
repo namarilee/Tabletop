@@ -10,6 +10,9 @@ import Combine
 import FirebaseAuth
 
 class UserViewModel: ObservableObject {
+    @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User?
+    
     func signUp(email: String, password: String) async {
            do {
                let result = try await Auth.auth().createUser(
@@ -43,4 +46,16 @@ class UserViewModel: ObservableObject {
                print(error)
            }
        }
+    
+    func signOut() {
+        
+    }
+    
+    func deleteAccount() {
+        
+    }
+    
+    func fetchUser() async {
+        
+    }
 }

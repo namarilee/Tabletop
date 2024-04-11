@@ -1,21 +1,18 @@
 //
-//  CreateAccountPage.swift
+//  SignInPage.swift
 //  Tabletop
 //
 //  Created by Marina Lee on 4/10/24.
 //
 
 import SwiftUI
-import FirebaseAuth
 
-struct CreateAccountPage: View {
-    @State private var username = ""
+struct SignInPage: View {
     @State private var email = ""
-    @State private var password = ""    
-    @State private var confirmPassword = ""
+    @State private var password = ""
 
     @EnvironmentObject var userViewModel: UserViewModel
-
+    
     var body: some View {
         VStack {
             Spacer()
@@ -30,11 +27,7 @@ struct CreateAccountPage: View {
             Spacer()
                 .frame(height: 50)
             
-            TextField("Create a username", text: $username)
-                .padding(10)
-                .background(Color.white)
-            Spacer()
-                .frame(height: 10)
+           
             TextField("Email", text: $email)
                 .padding(10)
                 .background(Color.white)
@@ -44,19 +37,14 @@ struct CreateAccountPage: View {
             TextField("Password", text: $password)
                 .padding(10)
                 .background(Color.white)
-            Spacer()
-                .frame(height: 10)
-            TextField("Confirm password", text: $confirmPassword)
-                .padding(10)
-                .background(Color.white)
-            
+          
         
             Spacer()
                 .frame(height: 50)
             
-            Button("Create account") {
+            Button("Log in") {
                 Task {
-                    await userViewModel.signUp(email: email, password: password)
+                    await userViewModel.signIn(email: email, password: password)
                 }
             }
                 .font(.title2)
@@ -73,5 +61,5 @@ struct CreateAccountPage: View {
 }
 
 #Preview {
-    CreateAccountPage()
+    SignInPage()
 }

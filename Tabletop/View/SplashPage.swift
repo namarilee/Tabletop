@@ -37,7 +37,7 @@ struct SplashPage: View {
                         .frame(height: 50)
                     
                     Text("Already have an account?")
-                    NavigationLink(destination: CreateAccountPage()) {
+                    NavigationLink(destination: SignInPage()) {
                         Text("Sign in")
                             .font(.title3)
                             .frame(width: 136, height: 33, alignment: .center)
