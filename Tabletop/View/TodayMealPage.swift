@@ -9,7 +9,13 @@ import SwiftUI
 
 struct TodayMealPage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Today's Meals")
+                .font(.title)
+                .foregroundColor(Color("ttPurple"))
+                
+        }
+        .background(Color(.lightPurpleBG))
     }
 }
 

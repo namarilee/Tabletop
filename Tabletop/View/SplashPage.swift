@@ -13,26 +13,39 @@ struct SplashPage: View {
     @StateObject private var userViewModel = UserViewModel()
     
     var body: some View {
-        VStack {
-            Spacer()
-            Text("tabletop")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(Color(red: 145.0 / 255.0, green: 143.0 / 255.0, blue: 240.0 / 255.0))
-            TextField("Email", text: $email)
-            TextField("Password", text: $password)
-            
-            Button("Create account") {
-                Task {
-                    await userViewModel.signUp(email: email, password: password)
+        NavigationStack {
+            VStack {
+                Spacer()
+                Text("tabletop")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color(red: 145.0 / 255.0, green: 143.0 / 255.0, blue: 240.0 / 255.0))
+                TextField("Email", text: $email)
+                TextField("Password", text: $password)
+                
+                NavigationLink(destination: TodayMealPage()) {
+                    Text("Get started")
+                    .frame(width: 200, height: 100, alignment: .center)
+                    .background(Color.black)
+                    .foregroundColor(Color.white)
                 }
+                
+                
+                Text("Already have an account?")
+                Button("Sign in") {
+                    
+                }
+                Button("Create account") {
+                    Task {
+                        await userViewModel.signUp(email: email, password: password)
+                    }
+                }
+                .disabled(email.isEmpty || password.isEmpty)
+                Spacer()
             }
-            .disabled(email.isEmpty || password.isEmpty)
-            Spacer()
+            .padding()
+            .background(Color(red: 244.0 / 255.0, green: 244.0 / 255.0, blue: 255.0 / 255.0))
         }
-        .padding()
-        .background(Color(red: 244.0 / 255.0, green: 244.0 / 255.0, blue: 255.0 / 255.0))
-
      //   .foregroundColor(Color(red: 244.0, green: 244.0, blue: 255.0, opacity: 1.0))
     }
 }
