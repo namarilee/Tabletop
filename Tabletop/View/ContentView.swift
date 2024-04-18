@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
-    @EnvironmentObject var userViewModel: UserViewModel
-
+//    var isLoggedIn: Bool {
+//            Auth.auth().currentUser == nil
+//    }
+    @StateObject var viewModel = UserViewModel()
     var body: some View {
         Group {
-            if userViewModel.userSession != nil {
+            if viewModel.userSession != nil {
                 ProfilePage()
             } else {
                 SplashPage()

@@ -20,12 +20,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct TabletopApp: App {
-    @StateObject var userViewModel = UserViewModel()
+  //  @StateObject var userViewModel = UserViewModel()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            SplashPage()
-                .environmentObject(userViewModel)
+            ContentView()
+               // .environmentObject(userViewModel)
         }
     }
 }

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SplashPage: View {
-    
+    @StateObject var userViewModel = UserViewModel()
+
     
     var body: some View {
         NavigationStack {

@@ -11,16 +11,16 @@ struct SignInPage: View {
     @State private var email = ""
     @State private var password = ""
 
-    @EnvironmentObject var userViewModel: UserViewModel
+    @StateObject var userViewModel = UserViewModel()
     
     var body: some View {
         VStack {
             Spacer()
-            Text("Welcome!")
+            Text("Welcome back!")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(Color("ttPurple"))
-            Text("Give us a little more info to create your Tabletop account.")
+            Text("Sign in to your Tabletop account")
                 .font(.title2)
                 .multilineTextAlignment(.center)
             

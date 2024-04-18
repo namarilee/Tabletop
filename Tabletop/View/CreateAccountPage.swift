@@ -14,7 +14,7 @@ struct CreateAccountPage: View {
     @State private var password = ""    
     @State private var confirmPassword = ""
 
-    @EnvironmentObject var userViewModel: UserViewModel
+    @StateObject var userViewModel = UserViewModel()
 
     var body: some View {
         VStack {
@@ -56,7 +56,7 @@ struct CreateAccountPage: View {
             
             Button("Create account") {
                 Task {
-                    await userViewModel.signUp(email: email, password: password)
+                    await userViewModel.signUp(email: email, password: password, username: username)
                 }
             }
                 .font(.title2)
