@@ -12,7 +12,7 @@ struct TodayMealPage: View {
 
     var body: some View {
         ScrollView {
-            VStack (alignment: .center) {
+            VStack (alignment: .center, spacing: 20) {
                 
                 Text("Today's Meals")
                     .font(.title)
@@ -25,36 +25,52 @@ struct TodayMealPage: View {
                     .fontWeight(.bold)
                 
                 ZStack {
-                    VStack(spacing: 10) {
-                        Button(action: {}) {
-                            VStack {
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .foregroundColor(Color("ttGreen"))
-                                    .frame(width: 32.0, height: 32.0)
-                                Text("Take photo")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color("ttGreen"))
+                    HStack(spacing: 20) {
+                        Image("sample-meal")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(8)
+                        VStack (alignment: .leading, spacing: 8.0) {
+                           
+                            Text("First time trying this place! It was so good")
+                                .font(.footnote)
+                                .fontWeight(.semibold)
+                            HStack (spacing: 5){
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color("ttRed"))
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color("ttRed"))
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color("ttRed"))
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color("ttRed"))
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(Color("ttRed"))
                             }
-                            .padding(50)
+                            Button {
+                                    
+                                } label: {
+                                    Text("📍 The Press Cafe")
+                                        .font(.caption)
+                                        .fontWeight(.semibold)
+                                        .lineLimit(-1)
+                                        .padding(8)
+                                        .foregroundColor(Color.white)
+                                        .background(
+                                            RoundedRectangle(
+                                                cornerRadius: 20,
+                                                style: .circular
+                                            )
+                                            .fill(Color("ttGreen"))
+                                        )
+                                }
+                            Text("15 likes • 4 comments")
+                                .font(.caption)
                         }
-                        
-                        
-                        //.strokeBorder(style: StrokeStyle(lineWidth: 4, dash: [10]))
-                        
-                        .frame(width: 250.0, height: 120.0)
-                        .background(Color("ttLightGreen"))
-                        .border(Color("ttGreen"))
-                        .cornerRadius(14.0)
-                        
-                        Text("2 hr, 13 min left to post")
-                            .italic()
                     }
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 20)
-                    .background(Color.white)
+                    .padding(25)
                 }
+                .background(Color.white)
                 .cornerRadius(14.0)
                 
                 Text("Lunch")
@@ -133,7 +149,7 @@ struct TodayMealPage: View {
                 }
                 .cornerRadius(14.0)
             }
-            .padding(30)
+            .padding(.horizontal, 30)
         }
         .background(Color("lightPurpleBG"))
 
