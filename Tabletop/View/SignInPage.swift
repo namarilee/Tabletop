@@ -31,13 +31,15 @@ struct SignInPage: View {
             TextField("Email", text: $email)
                 .padding(10)
                 .background(Color.white)
+                .cornerRadius(15)
                 .autocapitalization(.none)
             Spacer()
                 .frame(height: 10)
             TextField("Password", text: $password)
                 .padding(10)
                 .background(Color.white)
-          
+                .cornerRadius(15)
+
         
             Spacer()
                 .frame(height: 50)
@@ -62,4 +64,5 @@ struct SignInPage: View {
 
 #Preview {
     SignInPage()
+        .environmentObject(UserViewModel())
 }

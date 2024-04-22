@@ -74,4 +74,5 @@ struct CreateAccountPage: View {
 
 #Preview {
     CreateAccountPage()
+        .environmentObject(UserViewModel())
 }

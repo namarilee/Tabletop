@@ -18,7 +18,7 @@ struct SplashPage: View {
                 VStack {
                     Spacer()
                     Text("tabletop")
-                        .font(Font.custom("ReadexPro", size: 50))
+                        .font(Font.custom("Futura", size: 50))
                         .fontWeight(.medium)
                         .foregroundColor(Color("ttPurple"))
                     
@@ -26,7 +26,7 @@ struct SplashPage: View {
                     Spacer()
                     NavigationLink(destination: CreateAccountPage()) {
                         Text("Get started")
-                            .font(Font.custom("ReadexPro", size: 20))
+                            .font(Font.custom("Futura", size: 25))
 
                             .font(.title2)
                             .frame(width: 311, height: 48, alignment: .center)
@@ -63,4 +63,5 @@ struct SplashPage: View {
 
 #Preview {
     SplashPage()
+        .environmentObject(UserViewModel())
 }

@@ -61,4 +61,6 @@ struct ProfilePage: View {
 
 #Preview {
     ProfilePage()
+        .environmentObject(UserViewModel())
+
 }
