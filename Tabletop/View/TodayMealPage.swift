@@ -120,27 +120,27 @@ struct TodayMealPage: View {
                     VStack(spacing: 10) {
                         Button(action: {}) {
                             VStack {
-                                Image(systemName: "plus")
+                                Image(systemName: "clock")
                                     .resizable()
-                                    .foregroundColor(Color("ttGreen"))
+                                    .foregroundColor(Color("ttBlack"))
                                     .frame(width: 32.0, height: 32.0)
-                                Text("Take photo")
+                                Text("It's not time yet!")
                                     .font(.title2)
                                     .fontWeight(.bold)
-                                    .foregroundColor(Color("ttGreen"))
+                                    .foregroundColor(Color("ttBlack"))
                             }
-                            .padding(50)
+                            .padding(.vertical, 50)
                         }
                         
                         
                         //.strokeBorder(style: StrokeStyle(lineWidth: 4, dash: [10]))
                         
                         .frame(width: 250.0, height: 120.0)
-                        .background(Color("ttLightGreen"))
-                        .border(Color("ttGreen"))
+                        .background(Color(red: 232.0 / 255.0, green: 232.0 / 255.0, blue: 232.0 / 255.0))
+                        .border(Color(red: 84.0 / 255.0, green: 84.0 / 255.0, blue: 84.0 / 255.0))
                         .cornerRadius(14.0)
                         
-                        Text("2 hr, 13 min left to post")
+                        Text("Come back in 4 hr, 28 min")
                             .italic()
                     }
                     .padding(.horizontal, 40)
