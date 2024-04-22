@@ -13,6 +13,7 @@ struct User: Identifiable, Codable {
     var username: String
     var userEmail: String
     
+    // Gets the initials of a username for the default profile picture
     var initials: String {
         let formatter = PersonNameComponentsFormatter()
         if let components = formatter.personNameComponents(from: username) {
@@ -23,6 +24,7 @@ struct User: Identifiable, Codable {
     }
 }
 
+// Mock user for testing
 extension User {
     static var MOCK_USER = User(id: NSUUID().uuidString, username: "namarilee", userEmail: "mhlee@usc.edu")
 }

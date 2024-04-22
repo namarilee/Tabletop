@@ -12,7 +12,8 @@ struct ContentView: View {
 //    var isLoggedIn: Bool {
 //            Auth.auth().currentUser == nil
 //    }
-    @StateObject var viewModel = UserViewModel()
+    @EnvironmentObject var viewModel: UserViewModel
+   
     var body: some View {
         Group {
             if viewModel.userSession != nil {

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ProfilePage: View {
-    @StateObject var userViewModel = UserViewModel()
+    @EnvironmentObject var userViewModel: UserViewModel
 
     var body: some View {
         if let user = userViewModel.currentUser {
             VStack {
+                Spacer()
                 Text(user.initials)
                     .font(.title)
                     .foregroundColor(.white)
@@ -47,7 +48,12 @@ struct ProfilePage: View {
                     .cornerRadius(20)
 
                 }
+                Button("Log out") {
+                    userViewModel.signOut()
+                }
+                Spacer()
             }
+            .padding(100)
             .background(Color("lightPurpleBG"))
         }
     }

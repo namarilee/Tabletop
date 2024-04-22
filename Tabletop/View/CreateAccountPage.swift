@@ -14,7 +14,7 @@ struct CreateAccountPage: View {
     @State private var password = ""    
     @State private var confirmPassword = ""
 
-    @StateObject var userViewModel = UserViewModel()
+    @EnvironmentObject var userViewModel: UserViewModel
 
     var body: some View {
         VStack {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodayMealPage: View {
-    @StateObject var userViewModel = UserViewModel()
+    @EnvironmentObject var userViewModel: UserViewModel
 
     var body: some View {
         VStack {

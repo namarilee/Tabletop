@@ -48,6 +48,8 @@ class UserViewModel: ObservableObject {
                    withEmail: email,
                    password: password
                )
+               self.userSession = result.user
+               await fetchUser()
                let userId = result.user.uid
                let email = result.user.email
                print("userId \(userId) email \(email)")
@@ -57,7 +59,13 @@ class UserViewModel: ObservableObject {
        }
     
     func signOut() {
-        
+        do {
+            try Auth.auth().signOut() // signs out user on backend
+            self.userSession = nil // wipes out user session and takes us back to login screen
+            self.currentUser = nil // wipes out current user data model
+        } catch {
+            print(error)
+        }
     }
     
     func deleteAccount() {

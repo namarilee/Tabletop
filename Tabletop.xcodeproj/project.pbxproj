@@ -11,6 +11,7 @@
 		7A5982692BC785B900DABB81 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5982682BC785B900DABB81 /* User.swift */; };
 		7A59826C2BC78DF900DABB81 /* SignInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A59826B2BC78DF900DABB81 /* SignInPage.swift */; };
 		7A59826E2BC7940700DABB81 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A59826D2BC7940700DABB81 /* ProfilePage.swift */; };
+		7A6F98F42BD5F71500E0BC1C /* ReadexPro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A6F98F32BD5F71500E0BC1C /* ReadexPro.ttf */; };
 		7ABE85EA2BC766100066C1CF /* CreateAccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */; };
 		7AD655112BC4D54F00DDC39D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655102BC4D54F00DDC39D /* FirebaseAuth */; };
 		7AD655132BC4D54F00DDC39D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655122BC4D54F00DDC39D /* FirebaseFirestore */; };
@@ -48,6 +49,8 @@
 		7A5982682BC785B900DABB81 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7A59826B2BC78DF900DABB81 /* SignInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPage.swift; sourceTree = "<group>"; };
 		7A59826D2BC7940700DABB81 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
+		7A6F98F32BD5F71500E0BC1C /* ReadexPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ReadexPro.ttf; sourceTree = "<group>"; };
+		7A6F98F52BD5F76300E0BC1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountPage.swift; sourceTree = "<group>"; };
 		7AD655142BC4D73B00DDC39D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7AD655162BC4D7AD00DDC39D /* SplashPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPage.swift; sourceTree = "<group>"; };
@@ -120,6 +123,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7A6F98F22BD5F6F300E0BC1C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7A6F98F32BD5F71500E0BC1C /* ReadexPro.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		7AE1C03F2BC4CE1A0023C380 = {
 			isa = PBXGroup;
 			children = (
@@ -143,12 +154,14 @@
 		7AE1C04A2BC4CE1A0023C380 /* Tabletop */ = {
 			isa = PBXGroup;
 			children = (
+				7A6F98F52BD5F76300E0BC1C /* Info.plist */,
 				7AD655142BC4D73B00DDC39D /* GoogleService-Info.plist */,
 				7AE1C04B2BC4CE1A0023C380 /* TabletopApp.swift */,
 				7A59826A2BC7874E00DABB81 /* Model */,
 				7A51E4C52BC4F85900EA3EC6 /* View */,
 				7A51E4C62BC4F87800EA3EC6 /* ViewModel */,
 				7AE1C04F2BC4CE1F0023C380 /* Assets.xcassets */,
+				7A6F98F22BD5F6F300E0BC1C /* Fonts */,
 				7AE1C0512BC4CE1F0023C380 /* Preview Content */,
 			);
 			path = Tabletop;
@@ -292,6 +305,7 @@
 			files = (
 				7AE1C0532BC4CE1F0023C380 /* Preview Assets.xcassets in Resources */,
 				7AD655152BC4D73B00DDC39D /* GoogleService-Info.plist in Resources */,
+				7A6F98F42BD5F71500E0BC1C /* ReadexPro.ttf in Resources */,
 				7AE1C0502BC4CE1F0023C380 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +505,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Tabletop/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tabletop/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -519,6 +534,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Tabletop/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Tabletop/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -11,8 +11,8 @@ struct SignInPage: View {
     @State private var email = ""
     @State private var password = ""
 
-    @StateObject var userViewModel = UserViewModel()
-    
+    @EnvironmentObject var userViewModel: UserViewModel
+
     var body: some View {
         VStack {
             Spacer()
