@@ -31,7 +31,7 @@ struct ProfilePage: View {
                     .foregroundColor(Color.black)
                     .cornerRadius(20)
                     
-                    Button("🥙 12") {
+                    Button("🍳 12") {
                         
                     }
                     .frame(width: 50, height: 50)
@@ -53,8 +53,9 @@ struct ProfilePage: View {
                 }
                 Spacer()
             }
-            .padding(100)
+            .padding()
             .background(Color("lightPurpleBG"))
+            .ignoresSafeArea()
         }
     }
 }

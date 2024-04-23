@@ -33,6 +33,8 @@ struct CreateAccountPage: View {
             TextField("Create a username", text: $username)
                 .padding(10)
                 .background(Color.white)
+                .autocapitalization(.none)
+
             Spacer()
                 .frame(height: 10)
             TextField("Email", text: $email)
@@ -44,11 +46,15 @@ struct CreateAccountPage: View {
             TextField("Password", text: $password)
                 .padding(10)
                 .background(Color.white)
+                .autocapitalization(.none)
+
             Spacer()
                 .frame(height: 10)
             TextField("Confirm password", text: $confirmPassword)
                 .padding(10)
                 .background(Color.white)
+                .autocapitalization(.none)
+
             
         
             Spacer()

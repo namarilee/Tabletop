@@ -13,11 +13,13 @@ struct ContentView: View {
 //            Auth.auth().currentUser == nil
 //    }
     @EnvironmentObject var viewModel: UserViewModel
-   
+    
+        
     var body: some View {
         Group {
             if viewModel.userSession != nil {
-                ProfilePage()
+                MainTabView()
+                
             } else {
                 SplashPage()
             }

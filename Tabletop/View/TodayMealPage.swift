@@ -15,14 +15,14 @@ struct TodayMealPage: View {
             VStack (alignment: .center, spacing: 20) {
                 
                 Text("Today's Meals")
-                    .font(.title)
-                    .fontWeight(.bold)
+                    .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
                     .foregroundColor(Color("ttPurple"))
                 
                 Text("Breakfast")
+                    .font(.custom("ReadexPro-Regular_Medium", size: 20))
+                    .foregroundColor(Color("ttBlack"))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.title2)
-                    .fontWeight(.bold)
+                   
                 
                 ZStack {
                     HStack(spacing: 20) {
@@ -33,8 +33,8 @@ struct TodayMealPage: View {
                         VStack (alignment: .leading, spacing: 8.0) {
                            
                             Text("First time trying this place! It was so good")
-                                .font(.footnote)
-                                .fontWeight(.semibold)
+                                .font(.custom("ReadexPro-Regular", size: 14))
+
                             HStack (spacing: 5){
                                 Image(systemName: "star.fill")
                                     .foregroundColor(Color("ttRed"))
@@ -51,10 +51,9 @@ struct TodayMealPage: View {
                                     
                                 } label: {
                                     Text("📍 The Press Cafe")
-                                        .font(.caption)
-                                        .fontWeight(.semibold)
+                                        .font(.custom("ReadexPro-Regular", size: 10))
                                         .lineLimit(-1)
-                                        .padding(8)
+                                        .padding(7)
                                         .foregroundColor(Color.white)
                                         .background(
                                             RoundedRectangle(
@@ -65,7 +64,7 @@ struct TodayMealPage: View {
                                         )
                                 }
                             Text("15 likes • 4 comments")
-                                .font(.caption)
+                                .font(.custom("ReadexPro-Regular", size: 12))
                         }
                     }
                     .padding(25)
@@ -74,9 +73,9 @@ struct TodayMealPage: View {
                 .cornerRadius(14.0)
                 
                 Text("Lunch")
+                    .font(.custom("ReadexPro-Regular_Medium", size: 20))
+                    .foregroundColor(Color("ttBlack"))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.title2)
-                    .fontWeight(.bold)
                 
                 ZStack {
                     VStack(spacing: 10) {
@@ -87,23 +86,21 @@ struct TodayMealPage: View {
                                     .foregroundColor(Color("ttGreen"))
                                     .frame(width: 32.0, height: 32.0)
                                 Text("Take photo")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
+                                    .font(.custom("ReadexPro-Regular_Medium", size: 22))
                                     .foregroundColor(Color("ttGreen"))
                             }
                             .padding(50)
                         }
                         
                         
-                        //.strokeBorder(style: StrokeStyle(lineWidth: 4, dash: [10]))
                         
-                        .frame(width: 250.0, height: 120.0)
+                        .frame(width: 270.0, height: 120.0)
                         .background(Color("ttLightGreen"))
-                        .border(Color("ttGreen"))
                         .cornerRadius(14.0)
                         
                         Text("2 hr, 13 min left to post")
-                            .italic()
+                            .font(.custom("ReadexPro-Regular_Light", size: 14))
+
                     }
                     .padding(.horizontal, 40)
                     .padding(.vertical, 20)
@@ -112,12 +109,23 @@ struct TodayMealPage: View {
                 .cornerRadius(14.0)
                 
                 Text("Dinner")
+                    .font(.custom("ReadexPro-Regular_Medium", size: 20))
+                    .foregroundColor(Color("ttBlack"))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.title2)
-                    .fontWeight(.bold)
                 
                 ZStack {
                     VStack(spacing: 10) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(Color(red: 232.0 / 255.0, green: 232.0 / 255.0, blue: 232.0 / 255.0))
+
+                            //    .strokeBorder(Color(red: 84.0 / 255.0, green: 84.0 / 255.0, blue: 84.0 / 255.0))
+                            //    .strokeBorder(color: Color(red: 84.0 / 255.0, green: 84.0 / 255.0, blue: 84.0 / 255.0), style: StrokeStyle(lineWidth: 1, dash: [8]))
+
+
+
+                                .frame(width: 270.0, height: 120.0)
+
                         Button(action: {}) {
                             VStack {
                                 Image(systemName: "clock")
@@ -125,23 +133,20 @@ struct TodayMealPage: View {
                                     .foregroundColor(Color("ttBlack"))
                                     .frame(width: 32.0, height: 32.0)
                                 Text("It's not time yet!")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
+                                    .font(.custom("ReadexPro-Regular_Medium", size: 22))
                                     .foregroundColor(Color("ttBlack"))
                             }
-                            .padding(.vertical, 50)
+                            .padding(.vertical, 20)
+                            
+                            
                         }
                         
+                    }
                         
-                        //.strokeBorder(style: StrokeStyle(lineWidth: 4, dash: [10]))
-                        
-                        .frame(width: 250.0, height: 120.0)
-                        .background(Color(red: 232.0 / 255.0, green: 232.0 / 255.0, blue: 232.0 / 255.0))
-                        .border(Color(red: 84.0 / 255.0, green: 84.0 / 255.0, blue: 84.0 / 255.0))
-                        .cornerRadius(14.0)
-                        
+
                         Text("Come back in 4 hr, 28 min")
-                            .italic()
+                            .font(.custom("ReadexPro-Regular_Light", size: 14))
+
                     }
                     .padding(.horizontal, 40)
                     .padding(.vertical, 20)

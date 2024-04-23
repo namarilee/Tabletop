@@ -25,6 +25,7 @@ struct MainTabView: View {
                 Label("", systemImage: "person")
             }
         }
+        .accentColor(Color("ttPurple"))
     }
 }
 
