@@ -12,10 +12,12 @@ struct SearchMapView: View {
     @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
     @State private var searchText = ""
     @State private var results = [MKMapItem]()
+    @State private var mapSelection: MKMapItem?
+    @State private var showDetails = false
     
     var body: some View {
         NavigationView {
-            Map(position: $cameraPosition) {
+            Map(position: $cameraPosition, selection: $mapSelection) {
                 //UserAnnotation()
                 
                 Annotation("My Location", coordinate: .userLocation) {
@@ -51,6 +53,15 @@ struct SearchMapView: View {
                     await searchPlaces()
                 }
             }
+            .onChange(of: mapSelection, { oldValue, newValue in
+                showDetails = newValue != nil
+            })
+            .sheet(isPresented: $showDetails, content: {
+                LocationDetailsView(mapSelection: $mapSelection, show: $showDetails)
+                    .presentationDetents([.height(340)])
+                    .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
+                    .presentationCornerRadius(12)
+            })
             .mapControls {
                 MapCompass()
                 MapPitchToggle()
@@ -58,7 +69,6 @@ struct SearchMapView: View {
                 
             }
         }
-        //.tint(Color("ttPurple"))
     }
 }
 
