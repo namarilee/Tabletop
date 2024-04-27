@@ -26,6 +26,8 @@ struct MainTabView: View {
             }
         }
         .accentColor(Color("ttPurple"))
+
+
     }
 }
 

@@ -31,7 +31,7 @@ struct CreatePostPage: View {
     private let ratingCaptions = ["Bad 😭", "Okay 😐", "Good 🙂", "Great 😄", "Awesome! 😍"]
     
     var body: some View {
-        NavigationView {
+       // NavigationView {
             ScrollView {
                 Text("Create Post")
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
@@ -97,36 +97,40 @@ struct CreatePostPage: View {
                     Spacer()
                          .frame(height: 40)
                     
-                    Text("Optional – feel free to come back and edit later!")
-                        .font(Font.custom("ReadexPro-Regular", size: 12))
-                        .foregroundColor(Color("lightGray"))
+//                    Text("Optional – feel free to come back and edit later!")
+//                        .font(Font.custom("ReadexPro-Regular", size: 12))
+//                        .foregroundColor(Color("lightGray"))
 
                     VStack {
-                        HStack {
-                            Image(systemName: "mappin.and.ellipse")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .foregroundColor(Color("ttGreen"))
-                                .frame(width: /*@START_MENU_TOKEN@*/30.0/*@END_MENU_TOKEN@*/, height: 30.0)
-                            VStack (alignment: .leading) {
-                                Text("Location")
-                                    .font(Font.custom("ReadexPro-Regular_SemiBold", size: 16))
-                                    .foregroundColor(Color("ttBlack"))
-                                Text("Tap to add...")
-                                    .font(Font.custom("ReadexPro-Regular", size: 16))
-                                    .foregroundColor(Color("lightGray"))
-                            }
-                            Spacer()
-                            Image(systemName: "greaterthan")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 15.0, height: /*@START_MENU_TOKEN@*/15.0/*@END_MENU_TOKEN@*/)
+                        NavigationLink(destination: SearchMapView()) {
+                            HStack {
+                                Image(systemName: "mappin.and.ellipse")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .foregroundColor(Color("ttGreen"))
+                                    .frame(width: /*@START_MENU_TOKEN@*/30.0/*@END_MENU_TOKEN@*/, height: 30.0)
+                                VStack (alignment: .leading) {
+                                    Text("Location")
+                                        .font(Font.custom("ReadexPro-Regular_SemiBold", size: 16))
+                                        .foregroundColor(Color("ttBlack"))
+                                    Text("Tap to add...")
+                                        .font(Font.custom("ReadexPro-Regular", size: 16))
+                                        .foregroundColor(Color("lightGray"))
+                                }
+                                Spacer()
+                                Image(systemName: "greaterthan")
+                                    .resizable()
+                                    .foregroundColor(Color("ttPurple"))
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 15.0, height: /*@START_MENU_TOKEN@*/15.0/*@END_MENU_TOKEN@*/)
                                 
+                            }
+                            .padding(.vertical, 10.0)
+                            .padding(.horizontal)
+                            .background(Color.white)
+                            .cornerRadius(16)
                         }
-                        .padding(.vertical, 10.0)
-                        .padding(.horizontal)
-                        .background(Color.white)
-                        .cornerRadius(16)
+                       // .tint(Color("ttPurple"))
 
                         Spacer()
                             .frame(height: 25)
@@ -161,7 +165,7 @@ struct CreatePostPage: View {
                     Button("Share") {
                         dismiss()
                     }
-                    .disabled(!createPostViewModel.ratingSelected)
+                    .disabled(!createPostViewModel.ratingSelected || manager.caption.isEmpty)
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 24))
                     .foregroundColor(Color.white)
                     .padding(.vertical, 10)
@@ -185,10 +189,11 @@ struct CreatePostPage: View {
                     }
                 }
             }
+            .toolbarBackground(.hidden, for: .navigationBar)
             .background(Color("lightPurpleBG"))
 
         }
-    }
+    //}
 }
 
 #Preview {
