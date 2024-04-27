@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct CreatePostPage: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userViewModel: UserViewModel
 
+    @StateObject var createPostViewModel = CreatePostViewModel()
     @State private var rating: Int?
     @StateObject var manager = TFManager()
     @State var captionTapped = false
+    
+    @State private var photosPickerItem: PhotosPickerItem?
+    @State private var mealImage: UIImage?
     
     private func starType(index: Int) -> String {
         if let rating = self.rating {
@@ -32,23 +37,34 @@ struct CreatePostPage: View {
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
                     .foregroundColor(Color("ttPurple"))
                 VStack {
-                    VStack (spacing: 18) {
-                        Image(systemName: "camera.on.rectangle.fill")
-                            .resizable(resizingMode: .tile)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 80, height: 80)
-                            .rotationEffect(Angle(degrees: -15))
-                            .symbolRenderingMode(.palette)
-                            .foregroundStyle(Color("ttPurple"), Color("ttGreen"))
-                        
-                        Text("Add image")
-                            .font(.custom("ReadexPro-Regular_Medium", size: 20))
-                            .foregroundColor(Color("lightGray"))
+                    PhotosPicker(selection: $photosPickerItem, matching: .images) {
+                        if createPostViewModel.imageSelected {
+                            Image(uiImage: mealImage!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .cornerRadius(20)
+                                .frame(width: 180, height: 220)
+                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                
+                        } else {
+                            VStack (spacing: 18) {
+                                Image(systemName: "camera.on.rectangle.fill")
+                                    .resizable(resizingMode: .tile)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 80, height: 80)
+                                    .rotationEffect(Angle(degrees: -15))
+                                    .symbolRenderingMode(.palette)
+                                    .foregroundStyle(Color("ttPurple"), Color("ttGreen"))
+                                
+                                Text("Add image")
+                                    .font(.custom("ReadexPro-Regular_Medium", size: 20))
+                                    .foregroundColor(Color("lightGray"))
+                            }
+                            .padding(40)
+                            .background(Color.white)
+                            .cornerRadius(20)
+                        }
                     }
-                    .padding(40)
-                    .background(Color.white)
-                    .cornerRadius(20)
-                    
                    Spacer()
                         .frame(height: 35)
                     
@@ -73,6 +89,7 @@ struct CreatePostPage: View {
                                 .frame(width: /*@START_MENU_TOKEN@*/40.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/40.0/*@END_MENU_TOKEN@*/)
                                 .onTapGesture {
                                     self.rating = index
+                                    createPostViewModel.ratingSelected = true
                                 }
                         }
                     }
@@ -83,7 +100,6 @@ struct CreatePostPage: View {
                     Text("Optional – feel free to come back and edit later!")
                         .font(Font.custom("ReadexPro-Regular", size: 12))
                         .foregroundColor(Color("lightGray"))
-                        .frame(maxWidth: .infinity, alignment: .leading)
 
                     VStack {
                         HStack {
@@ -93,11 +109,11 @@ struct CreatePostPage: View {
                                 .foregroundColor(Color("ttGreen"))
                                 .frame(width: /*@START_MENU_TOKEN@*/30.0/*@END_MENU_TOKEN@*/, height: 30.0)
                             VStack (alignment: .leading) {
-                                Text("Location:")
+                                Text("Location")
                                     .font(Font.custom("ReadexPro-Regular_SemiBold", size: 16))
                                     .foregroundColor(Color("ttBlack"))
                                 Text("Tap to add...")
-                                    .font(Font.custom("ReadexPro-Regular_SemiBold", size: 16))
+                                    .font(Font.custom("ReadexPro-Regular", size: 16))
                                     .foregroundColor(Color("lightGray"))
                             }
                             Spacer()
@@ -115,7 +131,7 @@ struct CreatePostPage: View {
                         Spacer()
                             .frame(height: 25)
                         
-                        Text("Caption:")
+                        Text("Caption")
                             .font(Font.custom("ReadexPro-Regular_SemiBold", size: 16))
                             .foregroundColor(Color("ttBlack"))
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -136,7 +152,7 @@ struct CreatePostPage: View {
                         }
                     }
                     .padding()
-                    .background(Color(red: 235.0 / 255.0, green: 235.0 / 255.0, blue: 255.0 / 255.0))
+                    .background(Color("ttPurpleLighter"))
                     .cornerRadius(20)
                     
                     Spacer()
@@ -145,14 +161,29 @@ struct CreatePostPage: View {
                     Button("Share") {
                         dismiss()
                     }
+                    .disabled(!createPostViewModel.ratingSelected)
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 24))
                     .foregroundColor(Color.white)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 40.0)
-                    .background(Color("ttRed"))
+                    .background(createPostViewModel.ratingSelected ? Color("ttRed") : Color("ttRedLighter"))
                     .cornerRadius(14.0)
                 }
                 .padding()
+                .onChange(of: photosPickerItem) { _, _ in
+                    Task {
+                        if let photosPickerItem,
+                           let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
+                            if let image = UIImage(data: data) {
+                                createPostViewModel.imageSelected = true
+                                print("bruh \(createPostViewModel.imageSelected)")
+                                mealImage = image
+                            }
+                        }
+                        photosPickerItem = nil
+
+                    }
+                }
             }
             .background(Color("lightPurpleBG"))
 
@@ -165,12 +196,4 @@ struct CreatePostPage: View {
         .environmentObject(UserViewModel())
 }
 
-class TFManager: ObservableObject {
-    @Published var caption = "" {
-        didSet {
-            if caption.count >= 1000 && oldValue.count <= 1000 {
-                caption = oldValue
-            }
-        }
-    }
-}
+
