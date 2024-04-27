@@ -17,11 +17,10 @@ struct SignInPage: View {
         VStack {
             Spacer()
             Text("Welcome back!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                .font(.custom("ReadexPro-Regular_SemiBold", size: 35))
                 .foregroundColor(Color("ttPurple"))
             Text("Sign in to your Tabletop account")
-                .font(.title2)
+                .font(Font.custom("ReadexPro-Regular_Light", size: 20))
                 .multilineTextAlignment(.center)
             
             Spacer()
@@ -29,16 +28,21 @@ struct SignInPage: View {
             
            
             TextField("Email", text: $email)
+                .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                 .padding(10)
                 .background(Color.white)
                 .cornerRadius(15)
                 .autocapitalization(.none)
+            
             Spacer()
                 .frame(height: 10)
+            
             TextField("Password", text: $password)
+                .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                 .padding(10)
                 .background(Color.white)
                 .cornerRadius(15)
+                .autocapitalization(.none)
 
         
             Spacer()
@@ -49,13 +53,14 @@ struct SignInPage: View {
                     await userViewModel.signIn(email: email, password: password)
                 }
             }
-                .font(.title2)
+                .font(Font.custom("ReadexPro-Regular_Medium", size: 24))
                 .frame(width: 311, height: 48, alignment: .center)
                 .background(Color("ttBlack"))
                 .foregroundColor(Color.white)
                 .cornerRadius(20)
                 .disabled(email.isEmpty || password.isEmpty)
-        Spacer()
+            
+            Spacer()
         }
         .padding(50)
         .background(Color("lightPurpleBG"))

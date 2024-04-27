@@ -9,7 +9,17 @@ import SwiftUI
 
 struct FeedPage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Spacer()
+                .frame(height: 50)
+            Text("My Feed")
+                .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
+                .foregroundColor(Color("ttPurple"))
+            Spacer()
+        }
+        .padding()
+        .background(Color("lightPurpleBG"))
+        .ignoresSafeArea()
     }
 }
 

@@ -20,39 +20,49 @@ struct CreateAccountPage: View {
         VStack {
             Spacer()
             Text("Welcome!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                .font(.custom("ReadexPro-Regular_SemiBold", size: 40))
+
                 .foregroundColor(Color("ttPurple"))
             Text("Give us a little more info to create your Tabletop account.")
-                .font(.title2)
+                .font(Font.custom("ReadexPro-Regular_Light", size: 20))
                 .multilineTextAlignment(.center)
             
             Spacer()
                 .frame(height: 50)
             
             TextField("Create a username", text: $username)
+                .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                 .padding(10)
                 .background(Color.white)
+                .cornerRadius(15)
                 .autocapitalization(.none)
 
             Spacer()
                 .frame(height: 10)
+            
             TextField("Email", text: $email)
+                .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                 .padding(10)
                 .background(Color.white)
+                .cornerRadius(15)
                 .autocapitalization(.none)
             Spacer()
                 .frame(height: 10)
             TextField("Password", text: $password)
+                .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                 .padding(10)
                 .background(Color.white)
+                .cornerRadius(15)
                 .autocapitalization(.none)
 
             Spacer()
                 .frame(height: 10)
+            
             TextField("Confirm password", text: $confirmPassword)
+                .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                 .padding(10)
                 .background(Color.white)
+                .cornerRadius(15)
                 .autocapitalization(.none)
 
             
@@ -65,7 +75,7 @@ struct CreateAccountPage: View {
                     await userViewModel.signUp(email: email, password: password, username: username)
                 }
             }
-                .font(.title2)
+                .font(Font.custom("ReadexPro-Regular_Medium", size: 24))
                 .frame(width: 311, height: 48, alignment: .center)
                 .background(Color("ttBlack"))
                 .foregroundColor(Color.white)

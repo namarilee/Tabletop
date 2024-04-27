@@ -14,6 +14,10 @@ struct ProfilePage: View {
         if let user = userViewModel.currentUser {
             VStack {
                 Spacer()
+                    .frame(height: 50)
+                Text("Profile")
+                    .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
+                    .foregroundColor(Color("ttPurple"))
                 Text(user.initials)
                     .font(.title)
                     .foregroundColor(.white)
@@ -21,7 +25,9 @@ struct ProfilePage: View {
                     .background(Color("ttPurple"))
                     .clipShape(Circle())
                 
-                Text(user.username)
+                Text("@\(user.username)")
+                    .font(.custom("ReadexPro-Regular", size: 20))
+                    .foregroundColor(Color("ttBlack"))
                 HStack {
                     Button("☕️ 12") {
                         

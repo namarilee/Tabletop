@@ -19,7 +19,6 @@ struct SplashPage: View {
                     Spacer()
                     Text("tabletop")
                         .font(.custom("ReadexPro-Regular_Bold", size: 50))
-                        .fontWeight(.medium)
                         .foregroundColor(Color("ttPurple"))
                     
                     
