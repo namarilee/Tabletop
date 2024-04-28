@@ -9,11 +9,22 @@ import Foundation
 import Combine
 import FirebaseAuth
 import FirebaseFirestore
+import PhotosUI
+import SwiftUI
+
 
 @MainActor
 class UserViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var selectedItem: PhotosPickerItem? {
+        didSet {
+            Task {
+                await loadImage()
+            }
+        }
+    }
+    @Published var profileImage: Image?
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -77,5 +88,12 @@ class UserViewModel: ObservableObject {
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
         self.currentUser = try? snapshot.data(as: User.self)
         print("DEBUG: Current user is \(self.currentUser)")
+    }
+    
+    private func loadImage() async {
+        guard let item = selectedItem else { return }
+        guard let data = try? await item.loadTransferable(type: Data.self) else { return }
+        guard let uiImage = UIImage(data: data) else { return }
+        self.profileImage = Image(uiImage: uiImage)
     }
 }

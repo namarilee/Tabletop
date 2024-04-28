@@ -25,6 +25,8 @@
 		7A6F99122BDDD9EF00E0BC1C /* AddMealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F99112BDDD9EF00E0BC1C /* AddMealCell.swift */; };
 		7A6F99142BDDDA1900E0BC1C /* NotTimeYetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F99132BDDDA1900E0BC1C /* NotTimeYetCell.swift */; };
 		7A6F99162BDDE04300E0BC1C /* TodayMealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F99152BDDE04300E0BC1C /* TodayMealViewModel.swift */; };
+		7A6F99192BDE04AE00E0BC1C /* FeedPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F99182BDE04AE00E0BC1C /* FeedPreviewCell.swift */; };
+		7A6F991B2BDE0F0700E0BC1C /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F991A2BDE0F0700E0BC1C /* PreviewProvider.swift */; };
 		7ABE85EA2BC766100066C1CF /* CreateAccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */; };
 		7AD655112BC4D54F00DDC39D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655102BC4D54F00DDC39D /* FirebaseAuth */; };
 		7AD655132BC4D54F00DDC39D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655122BC4D54F00DDC39D /* FirebaseFirestore */; };
@@ -77,6 +79,8 @@
 		7A6F99112BDDD9EF00E0BC1C /* AddMealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealCell.swift; sourceTree = "<group>"; };
 		7A6F99132BDDDA1900E0BC1C /* NotTimeYetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTimeYetCell.swift; sourceTree = "<group>"; };
 		7A6F99152BDDE04300E0BC1C /* TodayMealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMealViewModel.swift; sourceTree = "<group>"; };
+		7A6F99182BDE04AE00E0BC1C /* FeedPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPreviewCell.swift; sourceTree = "<group>"; };
+		7A6F991A2BDE0F0700E0BC1C /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountPage.swift; sourceTree = "<group>"; };
 		7AD655142BC4D73B00DDC39D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7AD655162BC4D7AD00DDC39D /* SplashPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPage.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 				7A6F99052BDCEABA00E0BC1C /* SearchMapView.swift */,
 				7A6F99072BDCF4BB00E0BC1C /* LocationDetailsView.swift */,
 				7A6F98FB2BD6EEC600E0BC1C /* FeedPage.swift */,
+				7A6F99182BDE04AE00E0BC1C /* FeedPreviewCell.swift */,
 				7A59826D2BC7940700DABB81 /* ProfilePage.swift */,
 				7A59826B2BC78DF900DABB81 /* SignInPage.swift */,
 				7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */,
@@ -170,6 +175,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		7A6F99172BDDF72B00E0BC1C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7A6F991A2BDE0F0700E0BC1C /* PreviewProvider.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7AE1C03F2BC4CE1A0023C380 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +213,7 @@
 				7A51E4C52BC4F85900EA3EC6 /* View */,
 				7A51E4C62BC4F87800EA3EC6 /* ViewModel */,
 				7AE1C04F2BC4CE1F0023C380 /* Assets.xcassets */,
+				7A6F99172BDDF72B00E0BC1C /* Extensions */,
 				7A6F98F22BD5F6F300E0BC1C /* Fonts */,
 				7AE1C0512BC4CE1F0023C380 /* Preview Content */,
 			);
@@ -383,6 +397,8 @@
 				7A6F99142BDDDA1900E0BC1C /* NotTimeYetCell.swift in Sources */,
 				7A6F99022BDC9C9E00E0BC1C /* CreatePostPage.swift in Sources */,
 				7A6F990E2BDDD61000E0BC1C /* FeedViewModel.swift in Sources */,
+				7A6F991B2BDE0F0700E0BC1C /* PreviewProvider.swift in Sources */,
+				7A6F99192BDE04AE00E0BC1C /* FeedPreviewCell.swift in Sources */,
 				7AD655192BC4D81500DDC39D /* UserViewModel.swift in Sources */,
 				7AD655172BC4D7AD00DDC39D /* SplashPage.swift in Sources */,
 				7A6F99082BDCF4BB00E0BC1C /* LocationDetailsView.swift in Sources */,

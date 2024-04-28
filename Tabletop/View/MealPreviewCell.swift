@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MealPreviewCell: View {
+    @StateObject var createPostViewModel = CreatePostViewModel()
+
     var body: some View {
         ZStack {
             HStack(spacing: 20) {
@@ -35,7 +37,7 @@ struct MealPreviewCell: View {
                     Button {
                         
                     } label: {
-                        Text("📍 The Press Cafe")
+                        Text("📍 \(createPostViewModel.locationName)")
                             .font(.custom("ReadexPro-Regular", size: 10))
                             .lineLimit(-1)
                             .padding(7)

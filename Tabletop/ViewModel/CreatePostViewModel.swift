@@ -8,25 +8,15 @@
 import Foundation
 import Combine
 import Firebase
+import PhotosUI
+import SwiftUI
 
 class CreatePostViewModel: ObservableObject {
     @Published var ratingSelected = false
     @Published var imageSelected = false
     @Published var locationName = "Tap to add..."
-    
-    func isUserAllowedToPost() -> Bool {
-        return ratingSelected && imageSelected /*&& !TFManager().caption.isEmpty*/
-    }
-    
-    func uploadPost() async throws {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let post = MealPost(ownerUid: uid, caption: TFManager().caption, timestamp: Timestamp(), rating: 0)
-        try await MealPostService.uploadPost(post)
-    }
+    @Published var mealImage: Image?
 
-}
-
-class TFManager: ObservableObject {
     @Published var caption = "" {
         didSet {
             if caption.count >= 1000 && oldValue.count <= 1000 {
@@ -34,4 +24,27 @@ class TFManager: ObservableObject {
             }
         }
     }
+    
+    @Published var rating: Int?
+    
+    func starType(index: Int) -> String {
+        if let rate = rating {
+            return index <= rate ? "star.fill" : "star"
+        } else {
+            return "star"
+        }
+    }
+    
+    func isUserAllowedToPost() -> Bool {
+        return ratingSelected && imageSelected && caption.isEmpty
+    }
+    
+    func uploadPost() async throws {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let post = MealPost(ownerUid: uid, caption: caption, timestamp: Timestamp(), rating: rating, locationName: locationName)
+        try await MealPostService.uploadPost(post)
+    }
+
 }
+
+

@@ -13,21 +13,13 @@ struct CreatePostPage: View {
     @EnvironmentObject var userViewModel: UserViewModel
 
     @StateObject var createPostViewModel = CreatePostViewModel()
-    @State private var rating: Int?
-    @StateObject var manager = TFManager()
     @State var captionTapped = false
 
     
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var mealImage: UIImage?
     
-    private func starType(index: Int) -> String {
-        if let rating = self.rating {
-            return index <= rating ? "star.fill" : "star"
-        } else {
-            return "star"
-        }
-    }
+   
     
     private let ratingCaptions = ["Bad 😭", "Okay 😐", "Good 🙂", "Great 😄", "Awesome! 😍"]
     
@@ -77,19 +69,19 @@ struct CreatePostPage: View {
                     Spacer()
                          .frame(height: 10)
                     
-                    Text(rating != nil ? "\(self.ratingCaptions[rating!])" : "")
+                    Text(createPostViewModel.rating != nil ? "\(self.ratingCaptions[createPostViewModel.rating!])" : "")
                         .font(.custom("ReadexPro-Regular", size: 16))
                         .foregroundColor(Color("ttGray"))
                     
                     HStack (spacing: 12){
                         ForEach(0...4, id: \.self) { index in
-                            Image(systemName: self.starType(index: index))
+                            Image(systemName: createPostViewModel.starType(index: index))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .foregroundColor(Color("ttRed"))
                                 .frame(width: /*@START_MENU_TOKEN@*/40.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/40.0/*@END_MENU_TOKEN@*/)
                                 .onTapGesture {
-                                    self.rating = index
+                                    createPostViewModel.rating = index
                                     createPostViewModel.ratingSelected = true
                                 }
                         }
@@ -129,7 +121,7 @@ struct CreatePostPage: View {
                             .padding(.vertical, 10.0)
                             .padding(.horizontal)
                             .background(Color.white)
-                            .cornerRadius(16)
+                            .cornerRadius(16.0)
                         }
 
                         Spacer()
@@ -140,7 +132,7 @@ struct CreatePostPage: View {
                             .foregroundColor(Color("ttBlack"))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        TextField("Add a description...", text: $manager.caption, axis: .vertical)
+                        TextField("Add a description...", text: $createPostViewModel.caption, axis: .vertical)
                             .font(.custom("ReadexPro-Regular_Light", size: 14))
 
                         
@@ -150,14 +142,14 @@ struct CreatePostPage: View {
                         
                         HStack {
                             Spacer()
-                            Text("\(manager.caption.count)/1000")
+                            Text("\(createPostViewModel.caption.count)/1000")
                                 .font(.custom("ReadexPro-Regular", size: 10))
                                 .foregroundColor(Color("lightGray"))
                         }
                     }
                     .padding()
                     .background(Color("ttPurpleLighter"))
-                    .cornerRadius(20)
+                    .cornerRadius(20.0)
                     
                     Spacer()
                         .frame(height: 25)

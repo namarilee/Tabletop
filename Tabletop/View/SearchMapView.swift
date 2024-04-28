@@ -45,7 +45,7 @@ struct SearchMapView: View {
                 }
             }
             .overlay (alignment: .top) {
-                TextField("Search for a restuarant, cafe, etc...", text: $searchText)
+                TextField("Search for a restaurant, cafe, etc...", text: $searchText)
                     .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                     .padding(10)
                     .background(Color.white)

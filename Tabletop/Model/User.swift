@@ -12,6 +12,7 @@ struct User: Identifiable, Codable {
     @DocumentID var id: String?
     var username: String
     var userEmail: String
+    var imageUrl: String?
     
     // Gets the initials of a username for the default profile picture
     var initials: String {
