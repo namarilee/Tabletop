@@ -156,7 +156,7 @@ struct CreatePostPage: View {
                     
                     Button("Share") {
                         Task {
-                            try await createPostViewModel.uploadPost()
+                            try await createPostViewModel.uploadPost(caption: createPostViewModel.caption)
                         }
                         dismiss()
                     }

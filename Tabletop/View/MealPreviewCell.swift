@@ -15,8 +15,11 @@ struct MealPreviewCell: View {
             HStack(spacing: 20) {
                 Image("sample-meal")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(8)
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(20)
+                    .frame(width: 135, height: 135)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                
                 VStack (alignment: .leading, spacing: 8.0) {
                     
                     Text("First time trying this place! It was so good")

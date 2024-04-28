@@ -10,10 +10,10 @@ import FirebaseFirestore
 
 struct MealPostService {
     
-    static func uploadPost(_ post: MealPost) async throws {
-        guard let postData = try? Firestore.Encoder().encode(post) else { return }
-        try await Firestore.firestore().collection("posts").addDocument(data: postData)
-    }
+//    static func uploadPost(_ post: MealPost) async throws {
+//        guard let postData = try? Firestore.Encoder().encode(post) else { return }
+//        try await Firestore.firestore().collection("posts").addDocument(data: postData)
+//    }
     
     static func fetchPosts() async throws -> [MealPost] {
         let snapshot = try await Firestore.firestore().collection("posts").order(by: "timestamp", descending: true).getDocuments()
