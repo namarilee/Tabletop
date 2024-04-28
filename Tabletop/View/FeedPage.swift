@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FeedPage: View {
+    @StateObject var feedViewModel = FeedViewModel()
+    
     var body: some View {
         VStack {
             Spacer()

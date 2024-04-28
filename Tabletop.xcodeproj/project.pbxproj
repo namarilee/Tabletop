@@ -18,6 +18,9 @@
 		7A6F99042BDCD32B00E0BC1C /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F99032BDCD32B00E0BC1C /* CreatePostViewModel.swift */; };
 		7A6F99062BDCEABA00E0BC1C /* SearchMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F99052BDCEABA00E0BC1C /* SearchMapView.swift */; };
 		7A6F99082BDCF4BB00E0BC1C /* LocationDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F99072BDCF4BB00E0BC1C /* LocationDetailsView.swift */; };
+		7A6F990A2BDDA76900E0BC1C /* MealPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F99092BDDA76900E0BC1C /* MealPost.swift */; };
+		7A6F990C2BDDA86A00E0BC1C /* MealPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F990B2BDDA86A00E0BC1C /* MealPostService.swift */; };
+		7A6F990E2BDDD61000E0BC1C /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6F990D2BDDD61000E0BC1C /* FeedViewModel.swift */; };
 		7ABE85EA2BC766100066C1CF /* CreateAccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */; };
 		7AD655112BC4D54F00DDC39D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655102BC4D54F00DDC39D /* FirebaseAuth */; };
 		7AD655132BC4D54F00DDC39D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655122BC4D54F00DDC39D /* FirebaseFirestore */; };
@@ -63,6 +66,9 @@
 		7A6F99032BDCD32B00E0BC1C /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
 		7A6F99052BDCEABA00E0BC1C /* SearchMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMapView.swift; sourceTree = "<group>"; };
 		7A6F99072BDCF4BB00E0BC1C /* LocationDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsView.swift; sourceTree = "<group>"; };
+		7A6F99092BDDA76900E0BC1C /* MealPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPost.swift; sourceTree = "<group>"; };
+		7A6F990B2BDDA86A00E0BC1C /* MealPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPostService.swift; sourceTree = "<group>"; };
+		7A6F990D2BDDD61000E0BC1C /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountPage.swift; sourceTree = "<group>"; };
 		7AD655142BC4D73B00DDC39D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7AD655162BC4D7AD00DDC39D /* SplashPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPage.swift; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				7A6F99032BDCD32B00E0BC1C /* CreatePostViewModel.swift */,
+				7A6F990B2BDDA86A00E0BC1C /* MealPostService.swift */,
+				7A6F990D2BDDD61000E0BC1C /* FeedViewModel.swift */,
 				7AD655182BC4D81500DDC39D /* UserViewModel.swift */,
 			);
 			path = ViewModel;
@@ -137,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				7A5982682BC785B900DABB81 /* User.swift */,
+				7A6F99092BDDA76900E0BC1C /* MealPost.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -357,12 +366,15 @@
 				7AE1C04E2BC4CE1A0023C380 /* ContentView.swift in Sources */,
 				7ABE85EA2BC766100066C1CF /* CreateAccountPage.swift in Sources */,
 				7A6F99022BDC9C9E00E0BC1C /* CreatePostPage.swift in Sources */,
+				7A6F990E2BDDD61000E0BC1C /* FeedViewModel.swift in Sources */,
 				7AD655192BC4D81500DDC39D /* UserViewModel.swift in Sources */,
 				7AD655172BC4D7AD00DDC39D /* SplashPage.swift in Sources */,
 				7A6F99082BDCF4BB00E0BC1C /* LocationDetailsView.swift in Sources */,
 				7AE1C04C2BC4CE1A0023C380 /* TabletopApp.swift in Sources */,
+				7A6F990C2BDDA86A00E0BC1C /* MealPostService.swift in Sources */,
 				7A5982692BC785B900DABB81 /* User.swift in Sources */,
 				7A6F98FA2BD6EE4600E0BC1C /* MainTabView.swift in Sources */,
+				7A6F990A2BDDA76900E0BC1C /* MealPost.swift in Sources */,
 				7A6F99062BDCEABA00E0BC1C /* SearchMapView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

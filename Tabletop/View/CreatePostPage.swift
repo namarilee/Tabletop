@@ -16,6 +16,7 @@ struct CreatePostPage: View {
     @State private var rating: Int?
     @StateObject var manager = TFManager()
     @State var captionTapped = false
+
     
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var mealImage: UIImage?
@@ -113,7 +114,7 @@ struct CreatePostPage: View {
                                     Text("Location")
                                         .font(Font.custom("ReadexPro-Regular_SemiBold", size: 16))
                                         .foregroundColor(Color("ttBlack"))
-                                    Text("Tap to add...")
+                                    Text(createPostViewModel.locationName)
                                         .font(Font.custom("ReadexPro-Regular", size: 16))
                                         .foregroundColor(Color("lightGray"))
                                 }
@@ -130,7 +131,6 @@ struct CreatePostPage: View {
                             .background(Color.white)
                             .cornerRadius(16)
                         }
-                       // .tint(Color("ttPurple"))
 
                         Spacer()
                             .frame(height: 25)
@@ -145,7 +145,7 @@ struct CreatePostPage: View {
 
                         
                         Rectangle()
-                            .fill(captionTapped ? Color("ttGray") : Color("lightGray"))
+                            .fill(captionTapped ? Color("ttPurple") : Color("lightGray"))
                             .frame(height: 1)
                         
                         HStack {
@@ -163,14 +163,17 @@ struct CreatePostPage: View {
                         .frame(height: 25)
                     
                     Button("Share") {
+                        Task {
+                            try await createPostViewModel.uploadPost()
+                        }
                         dismiss()
                     }
-                    .disabled(!createPostViewModel.ratingSelected || manager.caption.isEmpty)
+                    .disabled(!createPostViewModel.isUserAllowedToPost())
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 24))
                     .foregroundColor(Color.white)
                     .padding(.vertical, 10)
                     .padding(.horizontal, 40.0)
-                    .background(createPostViewModel.ratingSelected ? Color("ttRed") : Color("ttRedLighter"))
+                    .background(createPostViewModel.isUserAllowedToPost() ? Color("ttRed") : Color("ttRedLighter"))
                     .cornerRadius(14.0)
                 }
                 .padding()
@@ -180,7 +183,6 @@ struct CreatePostPage: View {
                            let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
                             if let image = UIImage(data: data) {
                                 createPostViewModel.imageSelected = true
-                                print("bruh \(createPostViewModel.imageSelected)")
                                 mealImage = image
                             }
                         }
@@ -197,7 +199,7 @@ struct CreatePostPage: View {
 }
 
 #Preview {
-    CreatePostPage()
+    CreatePostPage(createPostViewModel: CreatePostViewModel())
         .environmentObject(UserViewModel())
 }
 

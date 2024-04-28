@@ -14,15 +14,15 @@ struct MainTabView: View {
         TabView {
             TodayMealPage()
             .tabItem {
-                Label("", systemImage: "flame")
+                Image(systemName: "flame")
             }
             FeedPage()
             .tabItem {
-                Label("", systemImage: "fork.knife")
+                Image(systemName: "fork.knife")
             }
             ProfilePage()
             .tabItem {
-                Label("", systemImage: "person")
+                Image(systemName: "person")
             }
         }
         .accentColor(Color("ttPurple"))

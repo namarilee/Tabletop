@@ -15,6 +15,11 @@ struct SearchMapView: View {
     @State private var mapSelection: MKMapItem?
     @State private var showDetails = false
     
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var userViewModel: UserViewModel
+    @StateObject var createPostViewModel = CreatePostViewModel()
+
+    
     var body: some View {
         NavigationView {
             Map(position: $cameraPosition, selection: $mapSelection) {
@@ -55,11 +60,17 @@ struct SearchMapView: View {
             }
             .onChange(of: mapSelection, { oldValue, newValue in
                 showDetails = newValue != nil
+                if let name = mapSelection?.placemark.name {
+                    print(createPostViewModel.locationName)
+                    createPostViewModel.locationName = name
+                    print(createPostViewModel.locationName)
+
+                }
             })
             .sheet(isPresented: $showDetails, content: {
                 LocationDetailsView(mapSelection: $mapSelection, show: $showDetails)
-                    .presentationDetents([.height(340)])
-                    .presentationBackgroundInteraction(.enabled(upThrough: .height(340)))
+                    .presentationDetents([.height(380)])
+                    .presentationBackgroundInteraction(.enabled(upThrough: .height(380)))
                     .presentationCornerRadius(12)
             })
             .mapControls {
@@ -94,6 +105,6 @@ extension MKCoordinateRegion {
         return .init(center: .userLocation, latitudinalMeters: 10000, longitudinalMeters: 10000)
     }
 }
-#Preview {
-    SearchMapView()
-}
+//#Preview {
+//    SearchMapView(showDetails: true)
+//}

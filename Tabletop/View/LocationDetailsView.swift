@@ -14,6 +14,12 @@ struct LocationDetailsView: View {
     
     @State private var lookAroundScene: MKLookAroundScene?
     
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var userViewModel: UserViewModel
+    
+    @StateObject var createPostViewModel = CreatePostViewModel()
+
+    
     var body: some View {
         VStack {
             HStack {
@@ -47,6 +53,22 @@ struct LocationDetailsView: View {
             } else {
                 ContentUnavailableView("No preview available", systemImage: "eye.slash")
             }
+            
+            Button("Select location") {
+                if let name = mapSelection?.placemark.name {
+                    print(createPostViewModel.locationName)
+                    createPostViewModel.locationName = name
+                    print(createPostViewModel.locationName)
+
+                }
+                dismiss()
+            }
+            .font(.custom("ReadexPro-Regular_SemiBold", size: 22))
+            .foregroundColor(Color.white)
+            .padding(.vertical, 10)
+            .padding(.horizontal, 40.0)
+            .background(Color("ttPurple"))
+            .cornerRadius(14.0)
         }
         .onAppear {
             print("DEBUG: Did call on appear")
@@ -72,6 +94,6 @@ extension LocationDetailsView {
     }
 }
 
-#Preview {
-    LocationDetailsView(mapSelection: .constant(nil), show: .constant(false))
-}
+//#Preview {
+//    LocationDetailsView(mapSelection: .constant(nil), show: .constant(false), showDetails: $showDetails)
+//}

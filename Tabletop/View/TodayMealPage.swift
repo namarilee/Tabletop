@@ -86,7 +86,7 @@ struct TodayMealPage: View {
                                         .resizable()
                                         .foregroundColor(Color("ttGreen"))
                                         .frame(width: 32.0, height: 32.0)
-                                    Text("Upload photo")
+                                    Text("Add meal")
                                         .font(.custom("ReadexPro-Regular_Medium", size: 22))
                                         .foregroundColor(Color("ttGreen"))
                                 }
