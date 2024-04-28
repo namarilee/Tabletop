@@ -26,10 +26,12 @@ class UserViewModel: ObservableObject {
     }
     @Published var profileImage: Image?
     
+    private var uiImage: UIImage?
+    
     init() {
         self.userSession = Auth.auth().currentUser
         Task {
-            await fetchUser()
+            await fetchCurrentUser()
         }
     }
     func signUp(email: String, password: String, username: String) async {
@@ -47,7 +49,7 @@ class UserViewModel: ObservableObject {
                let encodedUser = try Firestore.Encoder().encode(user)
                // Create the document in firestore
                try await Firestore.firestore().collection("users").document(userId).setData(encodedUser)
-               await fetchUser()
+               await fetchCurrentUser()
            } catch {
                print(error)
            }
@@ -60,7 +62,7 @@ class UserViewModel: ObservableObject {
                    password: password
                )
                self.userSession = result.user
-               await fetchUser()
+               await fetchCurrentUser()
                let userId = result.user.uid
                let email = result.user.email
                print("userId \(userId) email \(email)")
@@ -83,17 +85,47 @@ class UserViewModel: ObservableObject {
         
     }
     
-    func fetchUser() async {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+    func fetchCurrentUser() async {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
         self.currentUser = try? snapshot.data(as: User.self)
         print("DEBUG: Current user is \(self.currentUser)")
     }
     
+    func fetchUsers() async throws -> [User] {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return [] }
+        let snapshot = try await Firestore.firestore().collection("users").getDocuments()
+        let users = snapshot.documents.compactMap( { try? $0.data(as: User.self) } )
+        return users.filter({ $0.id != currentUid })
+    }
+    
+    func updateUserData() async throws {
+        print("DEBUG: update user data")
+        try await updateProfileImage()
+        
+    }
+    
+    @MainActor
     private func loadImage() async {
         guard let item = selectedItem else { return }
         guard let data = try? await item.loadTransferable(type: Data.self) else { return }
         guard let uiImage = UIImage(data: data) else { return }
+        self.uiImage = uiImage
         self.profileImage = Image(uiImage: uiImage)
+    }
+    
+    private func updateProfileImage() async throws {
+        guard let image = self.uiImage else { return }
+        guard let imageUrl = try? await ImageUploader.uploadImage(folderName: "profile_images", image) else { return }
+        try await updateUserProfileImage(withImageUrl: imageUrl)
+    }
+    
+    func updateUserProfileImage(withImageUrl imageUrl: String) async throws {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+
+        try await Firestore.firestore().collection("users").document(currentUid).updateData([
+            "profileImageUrl": imageUrl
+        ])
+        self.currentUser?.imageUrl = imageUrl
     }
 }

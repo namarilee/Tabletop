@@ -11,6 +11,7 @@ import PhotosUI
 struct ProfilePage: View {
     @EnvironmentObject var userViewModel: UserViewModel
 
+    
     var body: some View {
         if let user = userViewModel.currentUser {
             VStack {
@@ -36,6 +37,12 @@ struct ProfilePage: View {
                             .clipShape(Circle())
                     }
                 }
+                .onDisappear {
+                    Task {
+                        try await userViewModel.updateUserData()
+                    }
+                }
+                
                 Text("@\(user.username)")
                     .font(.custom("ReadexPro-Regular", size: 20))
                     .foregroundColor(Color("ttBlack"))

@@ -16,6 +16,7 @@ class CreatePostViewModel: ObservableObject {
     @Published var imageSelected = false
     @Published var locationName = "Tap to add..."
     @Published var mealImage: Image?
+    
 
     @Published var caption = "" {
         didSet {
