@@ -55,10 +55,11 @@ struct SignInPage: View {
             }
                 .font(Font.custom("ReadexPro-Regular_Medium", size: 24))
                 .frame(width: 311, height: 48, alignment: .center)
-                .background(Color("ttBlack"))
+                .background(email.isEmpty || password.isEmpty ? Color("ttGray") : Color("ttBlack"))
                 .foregroundColor(Color.white)
                 .cornerRadius(20)
                 .disabled(email.isEmpty || password.isEmpty)
+
             
             Spacer()
         }

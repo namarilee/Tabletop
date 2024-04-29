@@ -15,6 +15,10 @@ struct CreateAccountPage: View {
     @State private var confirmPassword = ""
 
     @EnvironmentObject var userViewModel: UserViewModel
+    
+    private func passwordsMatch() -> Bool {
+        return password == confirmPassword
+    }
 
     var body: some View {
         VStack {
@@ -58,7 +62,8 @@ struct CreateAccountPage: View {
             Spacer()
                 .frame(height: 10)
             
-            TextField("Confirm password", text: $confirmPassword)
+            TextField("Confirm Password", text: $password)
+
                 .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                 .padding(10)
                 .background(Color.white)
@@ -77,10 +82,10 @@ struct CreateAccountPage: View {
             }
                 .font(Font.custom("ReadexPro-Regular_Medium", size: 24))
                 .frame(width: 311, height: 48, alignment: .center)
-                .background(Color("ttBlack"))
+                .background(username.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty || !passwordsMatch() ? Color("ttGray") : Color("ttBlack"))
                 .foregroundColor(Color.white)
                 .cornerRadius(20)
-                .disabled(email.isEmpty || password.isEmpty)
+                .disabled(username.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty || !passwordsMatch())
         Spacer()
         }
         .padding(50)
@@ -88,7 +93,60 @@ struct CreateAccountPage: View {
     }
 }
 
+struct MyTextField: UIViewRepresentable {
+
+    @Binding var text: String
+
+    func makeUIView(context: Context) -> UITextField {
+        let textField = UITextField(frame: .zero)
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Confirm password",
+            attributes: [
+                .foregroundColor: Color("ttRedLighter")
+            ]
+        )
+        textField.delegate = context.coordinator
+
+        return textField
+    }
+
+    // Updating data from SwiftUI > UIKit
+    func updateUIView(_ textField: UITextField, context: Context) {
+        textField.text = text
+    }
+
+    // Getting data from SwiftUI to UIKit
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(text: $text)
+    }
+
+    // Updating data From UIKit > SwiftUI
+    class Coordinator: NSObject, UITextFieldDelegate {
+        @Binding var text: String
+
+        init(text: Binding<String>) {
+            self._text = text
+        }
+
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            text = textField.text ?? ""
+        }
+
+    }
+
+
+}
+
 #Preview {
     CreateAccountPage()
         .environmentObject(UserViewModel())
+       
 }
+
+//struct MyTextField_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MyTextField(text: .constant(""))
+//            .previewLayout(.sizeThatFits)
+//            .padding()
+//    }
+//}
