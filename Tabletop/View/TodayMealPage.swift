@@ -15,14 +15,6 @@ struct TodayMealPage: View {
     
     @State var isPostShared = false
 
-
-//    @State var isPostShared = false
-//
-//    func sharePost() {
-//        // Called when the post is shared
-//        isPostShared = true
-//    }
-//        
     
     // Function to determine which cell to display based on current time
     func mealCellForTime(mealType: MealType) -> some View {

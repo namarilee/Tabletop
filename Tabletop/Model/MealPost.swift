@@ -29,11 +29,11 @@ struct MealPost: Identifiable, Hashable, Codable {
     
     static func == (lhs: MealPost, rhs: MealPost) -> Bool {
                 return lhs.id == rhs.id
-        }
+    }
         
-        func hash(into hasher: inout Hasher) {
-               hasher.combine(id)
-        }
+    func hash(into hasher: inout Hasher) {
+           hasher.combine(id)
+    }
 }
 
 // Converting UIImage to a codable property

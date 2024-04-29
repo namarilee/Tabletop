@@ -15,11 +15,11 @@ import SwiftUI
 
 class CreatePostViewModel: ObservableObject {
     @Published var ratingSelected = false
-    @Published var imageSelected = false
+    @Published var isImageSelected = false
     @Published var locationName = "Tap to add..."
     
     @Published var mealImage: Image?
-    private var uiImage: UIImage?
+    @Published var uiImage: UIImage?
 
     @Published var selectedImage: PhotosPickerItem? {
         didSet {
@@ -51,7 +51,7 @@ class CreatePostViewModel: ObservableObject {
     }
     
     func isUserAllowedToPost() -> Bool {
-        return ratingSelected && imageSelected && !caption.isEmpty
+        return ratingSelected && isImageSelected && !caption.isEmpty
     }
     
    
@@ -65,24 +65,28 @@ class CreatePostViewModel: ObservableObject {
     
     func uploadPost(caption: String) async throws {
         print("uploadPost called")
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let uiImage = self.uiImage else { return }
-        
-        let postRef = Firestore.firestore().collection("meal_posts").document()
-        
-        print("get collection")
-        
-        guard let imageUrl = try await ImageUploader.uploadImage(folderName: "meal_images", uiImage) else { return }
-        
-        print("imageUrl created")
-        
-        let post = MealPost(postId: postRef.documentID, ownerUid: uid, caption: caption, timestamp: Timestamp(), rating: rating!, locationName: locationName, imageUrl: imageUrl)
-        
-        print("post was created")
-        
-        guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
-
-        try await postRef.setData(encodedPost)
+        do {
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            guard let uiImage = self.uiImage else { return }
+            
+            let postRef = Firestore.firestore().collection("meal_posts").document()
+            
+            print("get collection")
+            
+            guard let imageUrl = try await ImageUploader.uploadImage(folderName: "meal_images", uiImage) else { return }
+            
+            print("imageUrl created")
+            
+            let post = MealPost(postId: postRef.documentID, ownerUid: uid, caption: caption, timestamp: Timestamp(), rating: rating!, locationName: locationName, imageUrl: imageUrl)
+            
+            print("post was created")
+            
+            guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
+            
+            try await postRef.setData(encodedPost)
+        } catch {
+            print(error.localizedDescription)
+        }
         print("end of uploadPost")
     }
 

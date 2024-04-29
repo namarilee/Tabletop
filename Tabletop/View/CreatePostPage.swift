@@ -75,14 +75,11 @@ struct CreatePostPage: View {
                     .sheet(isPresented: $showImagePicker) {
                         ImagePickerView(sourceType: sourceType, didSelectImage: { image in
                             Task {
-                                //                            if let photosPickerItem,
-                                //                               let data = try? await photosPickerItem.loadTransferable(type: Data.self) {
-                                //                                if let image = UIImage(data: data) {
-                                //                                    print(createPostViewModel.imageSelected)
-                                //
-                                createPostViewModel.imageSelected = true
+                                createPostViewModel.isImageSelected = true
                                 //                                    print(createPostViewModel.imageSelected)
                                 mealImage = image
+                                createPostViewModel.uiImage = image
+
                                 //}
                                 
                                 photosPickerItem = nil
@@ -216,9 +213,10 @@ struct CreatePostPage: View {
                         Button("Share") {
                             Task {
                                 try await createPostViewModel.uploadPost(caption: createPostViewModel.caption)
+                                todayMealViewModel.isPostShared = true
                             }
                             dismiss()
-                            isPostShared = true
+                           
                             //    print("isPostShared: \(todayMealViewModel.isPostShared)") // Access the boolean variable directly
                         }
                         .disabled(!createPostViewModel.isUserAllowedToPost())
