@@ -49,32 +49,7 @@ struct ProfilePage: View {
                 Text("@\(user.username)")
                     .font(.custom("ReadexPro-Regular", size: 20))
                     .foregroundColor(Color("ttBlack"))
-                HStack {
-                    Button("☕️ 12") {
-                        
-                    }
-                    .frame(width: 50, height: 50)
-                    .background(Color.white)
-                    .foregroundColor(Color.black)
-                    .cornerRadius(20)
-                    
-                    Button("🍳 12") {
-                        
-                    }
-                    .frame(width: 50, height: 50)
-                    .background(Color.white)
-                    .foregroundColor(Color.black)
-                    .cornerRadius(20)
-                    
-                    Button("🥘 12") {
-                        
-                    }
-                    .frame(width: 50, height: 50)
-                    .background(Color.white)
-                    .foregroundColor(Color.black)
-                    .cornerRadius(20)
-                    
-                }
+               
                 Button("Log out") {
                     userViewModel.signOut()
                     UserDefaults.standard.set(false, forKey: "signIn")

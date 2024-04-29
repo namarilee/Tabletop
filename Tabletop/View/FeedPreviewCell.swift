@@ -16,41 +16,35 @@ struct FeedPreviewCell: View {
     let post: MealPost
     
     var body: some View {
-        if let user = post.user {
-            if let imageUrl = user.imageUrl, !imageUrl.isEmpty {
-                KFImage(URL(string: imageUrl))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 100, height: 100)
-                    .clipShape(Circle())
-            } else {
-                Text(user.initials)
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .frame(width: 100, height: 100)
-                    .background(Color("ttPurple"))
-                    .clipShape(Circle())
-            }
-            Text("\(post.user?.username ?? "")")
-
-        }
-        
-           
-            
-        
-        VStack (spacing: -1) {
-            Image(post.imageUrl)
+      //  if post.user != nil {
+            //KFImage(URL(string: post.imageUrl))
+        Image(post.imageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(20)
                 .frame(width: 162, height: 198)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-            
-            Text("username")
+            Text("\(post.user?.username ?? "")")
                 .font(.custom("ReadexPro-Regular_SemiBold", size: 20))
                 .foregroundColor(Color("ttPurple"))
+       // }
+        
+           
             
-        }
+        
+//        VStack (spacing: -1) {
+//            Image(post.imageUrl)
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//                .cornerRadius(20)
+//                .frame(width: 162, height: 198)
+//                .clipShape(RoundedRectangle(cornerRadius: 20))
+//            
+//            Text(post.user!.username)
+//                .font(.custom("ReadexPro-Regular_SemiBold", size: 20))
+//                .foregroundColor(Color("ttPurple"))
+//            
+//        }
             
         
         

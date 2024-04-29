@@ -13,17 +13,26 @@ struct MealPreviewCell: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     let post: MealPost
+    
+    func starType(index: Int) -> String {
+        if let rate = post.rating {
+            return index <= rate ? "star.fill" : "star"
+        } else {
+            return "star"
+        }
+    }
 
     var body: some View {
         ZStack {
             HStack(spacing: 20) {
-                Image(post.imageUrl)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(20)
-                    .frame(width: 135, height: 135)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                
+                NavigationLink(destination: PostDetailPage(post: post)) {
+                    Image(post.imageUrl)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .cornerRadius(20)
+                        .frame(width: 135, height: 135)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                }
                 VStack (alignment: .leading, spacing: 8.0) {
                     
                     Text(post.caption)
@@ -31,14 +40,16 @@ struct MealPreviewCell: View {
                     
                     HStack (spacing: 5) {
                         ForEach(0...4, id: \.self) { index in
-                            Image(systemName: createPostViewModel.starType(index: post.rating!))
+                            Image(systemName: starType(index: post.rating!))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .foregroundColor(Color("ttRed"))
                                 .frame(width: 20, height: 20)
-                                
+                            
                         }
                     }
+                    
+                    
                     Button {
                         
                     } label: {
@@ -55,9 +66,9 @@ struct MealPreviewCell: View {
                                 .fill(Color("ttGreen"))
                             )
                     }
-                    Text("15 likes • 4 comments")
-                        .font(.custom("ReadexPro-Regular", size: 12))
                 }
+                   
+                
             }
             .padding(25)
         }
@@ -68,6 +79,6 @@ struct MealPreviewCell: View {
 }
 
 #Preview {
-    MealPreviewCell(post: MealPost(ownerUid: "123", caption: "a", timestamp: Timestamp(), rating: 4, locationName: "The Press Cafe", imageUrl: "sample-meal"))
+    MealPreviewCell(post: MealPost(ownerUid: "123", caption: "a", timestamp: Timestamp(), rating: 3, locationName: "The Press Cafe", imageUrl: "sample-meal"))
         .environmentObject(UserViewModel())
 }

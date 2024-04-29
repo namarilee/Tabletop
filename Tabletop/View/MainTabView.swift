@@ -20,8 +20,7 @@ struct MainTabView: View {
             .tabItem {
                 Image(systemName: "fork.knife")
             }
-            ProfilePage(user: User.MOCK_USER)
-           //     .environmentObject(UserViewModel())
+            ProfilePage(user: userViewModel.currentUser ?? User.MOCK_USER)
 
             .tabItem {
                 Image(systemName: "person")

@@ -68,9 +68,11 @@ struct TodayMealPage: View {
                         .foregroundColor(Color("ttBlack"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    
+                    if todayMealViewModel.isPostShared {
+                        MealPreviewCell(post: createPostViewModel.post!)
+                    } else {
                         mealCellForTime(mealType: .breakfast)
-                    
+                    }
                     
                     Text("Lunch")
                         .font(.custom("ReadexPro-Regular_Medium", size: 20))

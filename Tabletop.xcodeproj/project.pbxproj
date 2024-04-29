@@ -37,6 +37,7 @@
 		7A9EBCF02BDF615C00F8A6E3 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9EBCEF2BDF615C00F8A6E3 /* GoogleSignIn */; };
 		7A9EBCF22BDF615C00F8A6E3 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9EBCF12BDF615C00F8A6E3 /* GoogleSignInSwift */; };
 		7A9EBCF42BDF68FF00F8A6E3 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9EBCF32BDF68FF00F8A6E3 /* +View.swift */; };
+		7A9EBCF62BDF879A00F8A6E3 /* PostDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9EBCF52BDF879A00F8A6E3 /* PostDetailPage.swift */; };
 		7ABE85EA2BC766100066C1CF /* CreateAccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */; };
 		7AD655112BC4D54F00DDC39D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655102BC4D54F00DDC39D /* FirebaseAuth */; };
 		7AD655132BC4D54F00DDC39D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655122BC4D54F00DDC39D /* FirebaseFirestore */; };
@@ -96,6 +97,7 @@
 		7A9EBCEA2BDF379400F8A6E3 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		7A9EBCEC2BDF609D00F8A6E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A9EBCF32BDF68FF00F8A6E3 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
+		7A9EBCF52BDF879A00F8A6E3 /* PostDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailPage.swift; sourceTree = "<group>"; };
 		7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountPage.swift; sourceTree = "<group>"; };
 		7AD655162BC4D7AD00DDC39D /* SplashPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPage.swift; sourceTree = "<group>"; };
 		7AD655182BC4D81500DDC39D /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				7A6F99052BDCEABA00E0BC1C /* SearchMapView.swift */,
 				7A6F99072BDCF4BB00E0BC1C /* LocationDetailsView.swift */,
 				7A6F98FB2BD6EEC600E0BC1C /* FeedPage.swift */,
+				7A9EBCF52BDF879A00F8A6E3 /* PostDetailPage.swift */,
 				7A6F99182BDE04AE00E0BC1C /* FeedPreviewCell.swift */,
 				7A59826D2BC7940700DABB81 /* ProfilePage.swift */,
 				7A9EBCE82BDF183400F8A6E3 /* PostGridView.swift */,
@@ -438,6 +441,7 @@
 				7A9EBCE72BDF0FDD00F8A6E3 /* PostGridViewModel.swift in Sources */,
 				7A6F99022BDC9C9E00E0BC1C /* CreatePostPage.swift in Sources */,
 				7A6F990E2BDDD61000E0BC1C /* FeedViewModel.swift in Sources */,
+				7A9EBCF62BDF879A00F8A6E3 /* PostDetailPage.swift in Sources */,
 				7A6F991B2BDE0F0700E0BC1C /* PreviewProvider.swift in Sources */,
 				7A6F99192BDE04AE00E0BC1C /* FeedPreviewCell.swift in Sources */,
 				7A9EBCE92BDF183400F8A6E3 /* PostGridView.swift in Sources */,
