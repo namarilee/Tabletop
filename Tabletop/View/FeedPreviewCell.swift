@@ -17,16 +17,15 @@ struct FeedPreviewCell: View {
     
     var body: some View {
       //  if post.user != nil {
-            //KFImage(URL(string: post.imageUrl))
-        Image(post.imageUrl)
+            KFImage(URL(string: post.imageUrl))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(20)
                 .frame(width: 162, height: 198)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-            Text("\(post.user?.username ?? "")")
-                .font(.custom("ReadexPro-Regular_SemiBold", size: 20))
-                .foregroundColor(Color("ttPurple"))
+//            Text("\(post.user?.username ?? "")")
+//                .font(.custom("ReadexPro-Regular_SemiBold", size: 20))
+//                .foregroundColor(Color("ttPurple"))
        // }
         
            

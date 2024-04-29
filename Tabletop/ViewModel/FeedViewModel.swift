@@ -20,6 +20,9 @@ class FeedViewModel: ObservableObject {
     
     @MainActor
     func fetchPosts() async throws {
+        print("start of fetch posts")
         self.posts = try await MealPostService.fetchFeedPosts()
+        print("end of fetch posts")
+
     }
 }

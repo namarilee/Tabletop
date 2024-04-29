@@ -10,6 +10,8 @@ import SwiftUI
 struct MainTabView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
+    @StateObject var feedViewModel = FeedViewModel()
+    
     var body: some View {
         TabView {
             TodayMealPage()
@@ -26,6 +28,7 @@ struct MainTabView: View {
                 Image(systemName: "person")
             }
         }
+        .environmentObject(feedViewModel)
         .accentColor(Color("ttPurple"))
 
 

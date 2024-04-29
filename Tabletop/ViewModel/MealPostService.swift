@@ -14,20 +14,32 @@ struct MealPostService {
     
     static func fetchFeedPosts() async throws -> [MealPost] {
         let snapshot = try await postsCollection.getDocuments()
+        print("got snapshot")
 
-        var posts = try snapshot.documents.compactMap( { try $0.data(as: MealPost.self) } )
-        
-        // Fetch the user associated with the post
-        for i in 0 ..< posts.count {
-            let post = posts[i]
-            let ownerUid = post.ownerUid
-            let postUser = try await UserViewModel.fetchUser(withUid: ownerUid)
-            posts[i].user = postUser
+
+        do {
+            var posts = try snapshot.documents.compactMap( { try $0.data(as: MealPost.self) } )
+            // Fetch the user associated with the post
+            for i in 0 ..< posts.count {
+                let post = posts[i]
+                let ownerUid = post.ownerUid
+                let postUser = try await UserViewModel.fetchUser(withUid: ownerUid)
+                posts[i].user = postUser
+            }
+            print("got users")
+
+            return posts
+        } catch {
+            print(error)
+            var posts = try snapshot.documents.compactMap( { try $0.data(as: MealPost.self) } )
+
+            return posts
         }
-        return posts
+
         
     }
     
+    // Fetch all the posts for a given user
     static func fetchUserPosts(uid: String) async throws -> [MealPost] {
         let snapshot = try await postsCollection.whereField("ownerUid", isEqualTo: uid).getDocuments()
         return try snapshot.documents.compactMap( { try $0.data(as: MealPost.self) } )

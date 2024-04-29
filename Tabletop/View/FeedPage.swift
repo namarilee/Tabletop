@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 
 struct FeedPage: View {
-    @StateObject var feedViewModel = FeedViewModel()
+    @EnvironmentObject var feedViewModel: FeedViewModel
     
     let items: [GridItem] = [
         GridItem(.flexible(minimum: 120)),
@@ -23,20 +23,24 @@ struct FeedPage: View {
                 .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
                 .foregroundColor(Color("ttPurple"))
             
-            LazyVGrid(columns: items, spacing: 10) {
+            LazyVGrid(columns: items, spacing: 7) {
                 ForEach(feedViewModel.posts) { post in
                     FeedPreviewCell(post: post)
                 }
-                //.padding()
                 
             }
-            //.padding()
-            .background(Color("lightPurpleBG"))
-            // .ignoresSafeArea()
+        }
+        .background(Color("lightPurpleBG"))
+
+        .onAppear() {
+            Task {
+                try await feedViewModel.fetchPosts()
+            }
         }
     }
 }
 
 #Preview {
     FeedPage()
+        .environmentObject(FeedViewModel())
 }

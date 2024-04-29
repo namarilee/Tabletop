@@ -23,6 +23,17 @@ struct SplashPage: View {
                     
                     
                     Spacer()
+//                    NavigationLink(value: "create_caccount") {
+//                        Text("Get started")
+//                            .font(Font.custom("ReadexPro-Regular_Medium", size: 25))
+//
+//                            .font(.title2)
+//                            .frame(width: 311, height: 48, alignment: .center)
+//                            .background(Color("ttBlack"))
+//                            .foregroundColor(Color.white)
+//                            .cornerRadius(20)
+//                    }
+                    
                     NavigationLink(destination: CreateAccountPage()) {
                         Text("Get started")
                             .font(Font.custom("ReadexPro-Regular_Medium", size: 25))
@@ -53,6 +64,11 @@ struct SplashPage: View {
                     Spacer()
                 }
             }
+//            .navigationDestination(for: String.self) {
+//                if $0 == "create_accunt" {
+//                    CreateAccountPage()
+//                }
+//            }
             //.padding()
         }
         .background(Color("lightPurpleBG"))

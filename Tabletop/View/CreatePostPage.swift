@@ -11,7 +11,8 @@ import PhotosUI
 struct CreatePostPage: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userViewModel: UserViewModel
-    
+    @EnvironmentObject var feedViewModel: FeedViewModel
+
     @StateObject var createPostViewModel = CreatePostViewModel()
     @State var captionTapped = false
     
@@ -213,11 +214,12 @@ struct CreatePostPage: View {
                         Button("Share") {
                             Task {
                                 try await createPostViewModel.uploadPost(caption: createPostViewModel.caption)
+                                // new post is created here
+                                try await feedViewModel.fetchPosts()
+                                
                                 todayMealViewModel.isPostShared = true
                             }
                             dismiss()
-                           
-                            //    print("isPostShared: \(todayMealViewModel.isPostShared)") // Access the boolean variable directly
                         }
                         .disabled(!createPostViewModel.isUserAllowedToPost())
                         .font(.custom("ReadexPro-Regular_SemiBold", size: 24))
@@ -242,6 +244,8 @@ struct CreatePostPage: View {
 #Preview {
     CreatePostPage(isPostShared: .constant(false))
         .environmentObject(UserViewModel())
+        .environmentObject(FeedViewModel())
+
 }
 
 

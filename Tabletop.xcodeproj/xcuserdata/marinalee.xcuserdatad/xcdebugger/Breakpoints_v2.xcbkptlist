@@ -18,36 +18,22 @@
             endingLineNumber = "69"
             landmarkName = "uploadPost(caption:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "677544E8-9960-4572-819F-A8CB910D4C25 - 6d803cc01fa5285"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for Tabletop.CreatePostViewModel.uploadPost(caption: Swift.String) async throws -&gt; ()"
-                  moduleName = "Tabletop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/marinalee/Desktop/Desktop%20-%20Marina%E2%80%99s%20MacBook%20Air/ITP%20342/Tabletop/Tabletop/ViewModel/CreatePostViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69">
-               </Location>
-               <Location
-                  uuid = "677544E8-9960-4572-819F-A8CB910D4C25 - 95dfd5b767a1168b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Tabletop.CreatePostViewModel.uploadPost(caption: Swift.String) async throws -&gt; ()"
-                  moduleName = "Tabletop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/marinalee/Desktop/Desktop%20-%20Marina%E2%80%99s%20MacBook%20Air/ITP%20342/Tabletop/Tabletop/ViewModel/CreatePostViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B82179E-A489-42A5-8951-6A9FD1504D64"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tabletop/ViewModel/MealPostService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "fetchFeedPosts()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
