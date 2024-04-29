@@ -13,10 +13,10 @@ struct ProfilePage: View {
     
     //var posts: [MealPost]
     
-    let user: User
+   let user: User
     
     var body: some View {
-      //  if let user = userViewModel.currentUser {
+     //  if let user = userViewModel.currentUser {
             VStack {
                 Spacer()
                     .frame(height: 50)
@@ -77,6 +77,8 @@ struct ProfilePage: View {
                 }
                 Button("Log out") {
                     userViewModel.signOut()
+                    UserDefaults.standard.set(false, forKey: "signIn")
+
                 }
                 
                 PostGridView(user: user)
@@ -87,7 +89,7 @@ struct ProfilePage: View {
                 .background(Color("lightPurpleBG"))
                 .ignoresSafeArea()
             }
-      //  }
+      // }
     }
 
 

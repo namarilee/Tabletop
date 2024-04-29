@@ -9,22 +9,24 @@ import SwiftUI
 import FirebaseAuth
 
 struct ContentView: View {
-//    var isLoggedIn: Bool {
-//            Auth.auth().currentUser == nil
-//    }
-    @EnvironmentObject var viewModel: UserViewModel
+
+    @EnvironmentObject var userViewModel: UserViewModel
     
-        
-    var body: some View {
-        Group {
-            if viewModel.userSession != nil {
-                MainTabView()
-                
-            } else {
-                SplashPage()
+    @State var isSignIn: Bool = UserDefaults.standard.bool(forKey: "isSignIn")
+
+        var body: some View {
+            Group {
+                if userViewModel.userSession != nil || isSignIn {
+                    MainTabView()
+                } else {
+                    SplashPage()
+                }
             }
+            .environmentObject(userViewModel)
+//            .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
+//                        self.isSignIn = UserDefaults.standard.bool(forKey: "signIn")
+//                    }
         }
-    }
 }
 
 #Preview {

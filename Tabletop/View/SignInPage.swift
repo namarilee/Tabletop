@@ -6,6 +6,10 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import GoogleSignIn
+import GoogleSignInSwift
+import FirebaseCore
 
 struct SignInPage: View {
     @State private var email = ""
@@ -60,7 +64,36 @@ struct SignInPage: View {
                 .cornerRadius(20)
                 .disabled(email.isEmpty || password.isEmpty)
 
-            
+            Text("or")
+            GoogleSignInButton {
+                guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+                // Create Google Sign In configuration object.
+                let config = GIDConfiguration(clientID: clientID)
+                GIDSignIn.sharedInstance.configuration = config
+
+                // Start the sign in flow!
+                GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { result, error in
+                  guard error == nil else {
+                      return
+                  }
+
+                  guard let user = result?.user,
+                    let idToken = user.idToken?.tokenString
+                  else {
+                      return
+                  }
+
+                  let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+
+                    Auth.auth().signIn(with: credential) { result, error in
+                        guard error == nil else {
+                            return
+                        }
+                        UserDefaults.standard.set(true, forKey: "signIn")
+                    }
+                }
+            }
             Spacer()
         }
         .padding(50)
