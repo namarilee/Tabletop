@@ -12,8 +12,8 @@ struct TodayMealPage: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @EnvironmentObject var todayMealViewModel: TodayMealViewModel
-    @StateObject var createPostViewModel = CreatePostViewModel()
-    
+    @EnvironmentObject var createPostViewModel: CreatePostViewModel
+
     @State var isPostShared = false
 
     
