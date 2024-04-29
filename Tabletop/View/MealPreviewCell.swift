@@ -68,6 +68,6 @@ struct MealPreviewCell: View {
 }
 
 #Preview {
-    MealPreviewCell(post: MealPost(ownerUid: "123", caption: "a", timestamp: Timestamp(), rating: 3, locationName: "The Press Cafe", imageUrl: "sample-meal"))
+    MealPreviewCell(post: MealPost(ownerUid: "123", caption: "a", timestamp: Timestamp(), rating: 4, locationName: "The Press Cafe", imageUrl: "sample-meal"))
         .environmentObject(UserViewModel())
 }

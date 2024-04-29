@@ -13,7 +13,7 @@ struct AddMealCell: View {
     var body: some View {
         ZStack {
             VStack(spacing: 10) {
-                NavigationLink(destination: CreatePostPage()) {
+                NavigationLink(destination: CreatePostPage(isPostShared: .constant(false))) {
                     VStack {
                         Image(systemName: "plus")
                             .resizable()

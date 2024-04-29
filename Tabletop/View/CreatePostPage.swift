@@ -25,7 +25,8 @@ struct CreatePostPage: View {
 
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
-    
+    @Binding var isPostShared: Bool
+
     @State private var locationName = "Tap to add.."
     
     
@@ -76,7 +77,7 @@ struct CreatePostPage: View {
 //                                if let image = UIImage(data: data) {
 //                                    print(createPostViewModel.imageSelected)
 //
-//                                    createPostViewModel.imageSelected = true
+                         createPostViewModel.imageSelected = true
 //                                    print(createPostViewModel.imageSelected)
                                     mealImage = image
                                 //}
@@ -204,8 +205,8 @@ struct CreatePostPage: View {
                         try await createPostViewModel.uploadPost(caption: createPostViewModel.caption)
                     }
                     dismiss()
-                    todayMealViewModel.sharePost()
-                    print("isPostShared: \(todayMealViewModel.isPostShared)") // Access the boolean variable directly
+                    isPostShared = true
+                //    print("isPostShared: \(todayMealViewModel.isPostShared)") // Access the boolean variable directly
                 }
                 .disabled(!createPostViewModel.isUserAllowedToPost())
                 .font(.custom("ReadexPro-Regular_SemiBold", size: 24))
@@ -238,7 +239,7 @@ struct CreatePostPage: View {
 }
 
 #Preview {
-    CreatePostPage()
+    CreatePostPage(isPostShared: .constant(false))
         .environmentObject(UserViewModel())
 }
 

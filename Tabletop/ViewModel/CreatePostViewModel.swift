@@ -69,11 +69,17 @@ class CreatePostViewModel: ObservableObject {
         guard let uiImage = self.uiImage else { return }
         
         let postRef = Firestore.firestore().collection("meal_posts").document()
+        
         print("get collection")
+        
         guard let imageUrl = try await ImageUploader.uploadImage(folderName: "meal_images", uiImage) else { return }
+        
         print("imageUrl created")
+        
         let post = MealPost(postId: postRef.documentID, ownerUid: uid, caption: caption, timestamp: Timestamp(), rating: rating!, locationName: locationName, imageUrl: imageUrl)
+        
         print("post was created")
+        
         guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
 
         try await postRef.setData(encodedPost)

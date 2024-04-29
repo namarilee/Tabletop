@@ -12,8 +12,17 @@ struct TodayMealPage: View {
     
     @StateObject var todayMealViewModel = TodayMealViewModel()
     @StateObject var createPostViewModel = CreatePostViewModel()
-
     
+    @State var isPostShared = false
+
+
+//    @State var isPostShared = false
+//
+//    func sharePost() {
+//        // Called when the post is shared
+//        isPostShared = true
+//    }
+//        
     
     // Function to determine which cell to display based on current time
     func mealCellForTime(mealType: MealType) -> some View {
@@ -82,6 +91,10 @@ struct TodayMealPage: View {
                     
                 }
                 .padding(.horizontal, 30)
+                .onChange(of: todayMealViewModel.isPostShared) { newValue in
+                                    // Update local state when isPostShared changes
+                                    isPostShared = newValue
+                                }
             }
             .background(Color("lightPurpleBG"))
             
