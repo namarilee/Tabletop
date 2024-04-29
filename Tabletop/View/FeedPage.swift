@@ -23,13 +23,16 @@ struct FeedPage: View {
                 .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
                 .foregroundColor(Color("ttPurple"))
             
-            LazyVGrid(columns: items, spacing: 7) {
+            LazyVGrid(columns: items, spacing: 10) {
                 ForEach(feedViewModel.posts) { post in
-                    FeedPreviewCell(post: post)
+                    NavigationLink(destination: PostDetailPage(post: post)) {
+                        FeedPreviewCell(post: post)
+                    }
                 }
                 
             }
         }
+        .padding()
         .background(Color("lightPurpleBG"))
 
         .onAppear() {

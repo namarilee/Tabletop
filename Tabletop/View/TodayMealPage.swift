@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct TodayMealPage: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
-    @StateObject var todayMealViewModel = TodayMealViewModel()
+    @EnvironmentObject var todayMealViewModel: TodayMealViewModel
     @StateObject var createPostViewModel = CreatePostViewModel()
     
     @State var isPostShared = false
@@ -31,10 +32,10 @@ struct TodayMealPage: View {
                 mealStartTime = 17
         }
         
-        if todayMealViewModel.isPostShared {
-            return AnyView(MealPreviewCell(post: createPostViewModel.post!))
-        }
-        
+//        if todayMealViewModel.isPostShared {
+//            return AnyView(MealPreviewCell(post: createPostViewModel.post!))
+//        }
+//        
         if !todayMealViewModel.isPostShared && now >= mealStartTime {
             return AnyView(AddMealCell())
         } else {
@@ -61,7 +62,11 @@ struct TodayMealPage: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     if todayMealViewModel.isPostShared {
-                        MealPreviewCell(post: createPostViewModel.post!)
+                        if let post = createPostViewModel.post {
+                            MealPreviewCell(post: post)
+                        } else {
+                            MealPreviewCell(post: MealPost(ownerUid: "123", caption: "First time trying this place! It was so good", timestamp: Timestamp(), rating: 4, locationName: "The Press Cafe", imageUrl: "sample-meal"))
+                        }
                     } else {
                         mealCellForTime(mealType: .breakfast)
                     }
@@ -101,4 +106,5 @@ struct TodayMealPage: View {
 #Preview {
     TodayMealPage()
         .environmentObject(UserViewModel())
+        .environmentObject(TodayMealViewModel())
 }

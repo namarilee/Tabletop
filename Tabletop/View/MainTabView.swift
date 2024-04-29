@@ -11,6 +11,8 @@ struct MainTabView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @StateObject var feedViewModel = FeedViewModel()
+    @StateObject var todayMealViewModel = TodayMealViewModel()
+    @StateObject var createPostViewModel = CreatePostViewModel()
     
     var body: some View {
         TabView {
@@ -29,6 +31,8 @@ struct MainTabView: View {
             }
         }
         .environmentObject(feedViewModel)
+        .environmentObject(todayMealViewModel)
+        .environmentObject(createPostViewModel)
         .accentColor(Color("ttPurple"))
 
 

@@ -84,6 +84,7 @@ class CreatePostViewModel: ObservableObject {
             guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
             
             try await postRef.setData(encodedPost)
+            self.post = post
         } catch {
             print(error.localizedDescription)
         }

@@ -13,10 +13,10 @@ struct CreatePostPage: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
 
-    @StateObject var createPostViewModel = CreatePostViewModel()
+    @EnvironmentObject var createPostViewModel: CreatePostViewModel
     @State var captionTapped = false
     
-    @StateObject var todayMealViewModel = TodayMealViewModel()
+    @EnvironmentObject var todayMealViewModel: TodayMealViewModel
     
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var mealImage: UIImage?
@@ -87,24 +87,7 @@ struct CreatePostPage: View {
                             }
                         })
                     }
-                    
-                    //
-                    //                .actionSheet(isPresented: $showImageOptions) {
-                    //                    ActionSheet(title: Text("Add Image"), buttons: [
-                    //                        .default(Text("Choose Photo"), action: {
-                    //                            // Handle choosing photo
-                    //                            sourceType = .photoLibrary
-                    //                            showImagePicker = true
-                    //                            // show ImagePickerView sheet
-                    //                        }),
-                    //                        .default(Text("Take Photo"), action: {
-                    //                            // Handle taking photo
-                    //                            sourceType = .camera
-                    //                        }),
-                    //                        .cancel()
-                    //                    ])
-                    //                }
-                    
+            
                     Spacer()
                         .frame(height: 35)
                     
@@ -136,11 +119,7 @@ struct CreatePostPage: View {
                     
                     Spacer()
                         .frame(height: 40)
-                    
-                    //                    Text("Optional – feel free to come back and edit later!")
-                    //                        .font(Font.custom("ReadexPro-Regular", size: 12))
-                    //                        .foregroundColor(Color("lightGray"))
-                    
+                
                     VStack {
                         VStack {
                             NavigationLink(destination: SearchMapView(), isActive: $isShowingMapView) {
@@ -213,7 +192,12 @@ struct CreatePostPage: View {
                         
                         Button("Share") {
                             Task {
-                                try await createPostViewModel.uploadPost(caption: createPostViewModel.caption)
+                                do {
+                                    try await createPostViewModel.uploadPost(caption: createPostViewModel.caption)
+                                } catch {
+                                    print("Error uploading post: \(error)")
+
+                                }
                                 // new post is created here
                                 try await feedViewModel.fetchPosts()
                                 
@@ -245,6 +229,7 @@ struct CreatePostPage: View {
     CreatePostPage(isPostShared: .constant(false))
         .environmentObject(UserViewModel())
         .environmentObject(FeedViewModel())
+        .environmentObject(TodayMealViewModel())
 
 }
 

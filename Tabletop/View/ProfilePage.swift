@@ -56,8 +56,9 @@ struct ProfilePage: View {
 
                 }
                 
-                PostGridView(user: user)
-                
+                ScrollView {
+                    PostGridView(user: user)
+                }
                 Spacer()
             }
                 .padding()

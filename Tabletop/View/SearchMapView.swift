@@ -27,7 +27,7 @@ struct SearchMapView: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userViewModel: UserViewModel
-    @StateObject var createPostViewModel = CreatePostViewModel()
+    @EnvironmentObject var createPostViewModel: CreatePostViewModel
     
     @ObservedObject var locationManager = LocationManager.shared
     
