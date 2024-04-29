@@ -19,6 +19,8 @@ struct SearchMapView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @StateObject var createPostViewModel = CreatePostViewModel()
 
+    @ObservedObject var locationManager = LocationManager.shared
+    
     
     var body: some View {
         NavigationView {

@@ -62,7 +62,7 @@ struct CreateAccountPage: View {
             Spacer()
                 .frame(height: 10)
             
-            TextField("Confirm Password", text: $password)
+            TextField("Confirm Password", text: $confirmPassword)
 
                 .font(Font.custom("ReadexPro-Regular_Light", size: 16))
                 .padding(10)

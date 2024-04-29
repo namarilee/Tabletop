@@ -38,6 +38,7 @@
 		7A9EBCF22BDF615C00F8A6E3 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7A9EBCF12BDF615C00F8A6E3 /* GoogleSignInSwift */; };
 		7A9EBCF42BDF68FF00F8A6E3 /* +View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9EBCF32BDF68FF00F8A6E3 /* +View.swift */; };
 		7A9EBCF62BDF879A00F8A6E3 /* PostDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9EBCF52BDF879A00F8A6E3 /* PostDetailPage.swift */; };
+		7A9EBCF82BDFA36000F8A6E3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9EBCF72BDFA36000F8A6E3 /* LocationManager.swift */; };
 		7ABE85EA2BC766100066C1CF /* CreateAccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */; };
 		7AD655112BC4D54F00DDC39D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655102BC4D54F00DDC39D /* FirebaseAuth */; };
 		7AD655132BC4D54F00DDC39D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7AD655122BC4D54F00DDC39D /* FirebaseFirestore */; };
@@ -98,6 +99,7 @@
 		7A9EBCEC2BDF609D00F8A6E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A9EBCF32BDF68FF00F8A6E3 /* +View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+View.swift"; sourceTree = "<group>"; };
 		7A9EBCF52BDF879A00F8A6E3 /* PostDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailPage.swift; sourceTree = "<group>"; };
+		7A9EBCF72BDFA36000F8A6E3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountPage.swift; sourceTree = "<group>"; };
 		7AD655162BC4D7AD00DDC39D /* SplashPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPage.swift; sourceTree = "<group>"; };
 		7AD655182BC4D81500DDC39D /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				7A6F991C2BDE2CB000E0BC1C /* ImageUploader.swift */,
 				7A6F99152BDDE04300E0BC1C /* TodayMealViewModel.swift */,
 				7A9EBCE62BDF0FDD00F8A6E3 /* PostGridViewModel.swift */,
+				7A9EBCF72BDFA36000F8A6E3 /* LocationManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				7A59826E2BC7940700DABB81 /* ProfilePage.swift in Sources */,
 				7A9EBCEB2BDF379400F8A6E3 /* ImagePickerView.swift in Sources */,
 				7A6F99162BDDE04300E0BC1C /* TodayMealViewModel.swift in Sources */,
+				7A9EBCF82BDFA36000F8A6E3 /* LocationManager.swift in Sources */,
 				7A59826C2BC78DF900DABB81 /* SignInPage.swift in Sources */,
 				7A6F98FC2BD6EEC600E0BC1C /* FeedPage.swift in Sources */,
 				7A51E4C42BC4F80D00EA3EC6 /* TodayMealPage.swift in Sources */,
@@ -620,6 +624,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tabletop/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow access to your location to find restaurants near you!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -649,6 +654,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tabletop/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow access to your location to find restaurants near you!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
