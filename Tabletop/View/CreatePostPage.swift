@@ -36,7 +36,7 @@ struct CreatePostPage: View {
     private let ratingCaptions = ["Bad 😭", "Okay 😐", "Good 🙂", "Great 😄", "Awesome! 😍"]
     
     var body: some View {
-        NavigationView {
+       // NavigationView {
             ScrollView {
                 Text("Create Post")
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
@@ -237,7 +237,7 @@ struct CreatePostPage: View {
             }
             .background(Color("lightPurpleBG"))
             
-        }
+        //}
     }
 }
 

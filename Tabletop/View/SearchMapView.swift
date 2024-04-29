@@ -9,7 +9,17 @@ import SwiftUI
 import MapKit
 
 struct SearchMapView: View {
-    @State private var cameraPosition: MapCameraPosition = .region(.userRegion)
+    static var userRegion: MKCoordinateRegion {
+            guard let location = LocationManager.shared.userLocation else {
+                return MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 34.0250684, longitude: -118.2825343), latitudinalMeters: 10000, longitudinalMeters: 10000)
+            }
+            return MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+    }
+    
+    @State private var cameraPosition: MapCameraPosition = .region(userRegion)
+    
+    
+    
     @State private var searchText = ""
     @State private var results = [MKMapItem]()
     @State private var mapSelection: MKMapItem?
@@ -18,7 +28,7 @@ struct SearchMapView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userViewModel: UserViewModel
     @StateObject var createPostViewModel = CreatePostViewModel()
-
+    
     @ObservedObject var locationManager = LocationManager.shared
     
     
@@ -26,20 +36,22 @@ struct SearchMapView: View {
         NavigationView {
             Map(position: $cameraPosition, selection: $mapSelection) {
                 //UserAnnotation()
-                
-                Annotation("My Location", coordinate: .userLocation) {
-                    ZStack {
-                        Circle()
-                            .frame(width: 32, height: 32)
-                            .foregroundColor(.blue.opacity(0.25))
-                        Circle()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(.white)
-                        Circle()
-                            .frame(width: 12, height: 12)
-                            .foregroundColor(.blue)
+                if let location = locationManager.userLocation {
+                    Annotation("My Location", coordinate: location.coordinate) {
+                        ZStack {
+                            Circle()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.blue.opacity(0.25))
+                            Circle()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.white)
+                            Circle()
+                                .frame(width: 12, height: 12)
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
+                
                 
                 ForEach(results, id: \.self) { item in
                     let placemark = item.placemark
@@ -57,7 +69,9 @@ struct SearchMapView: View {
             }
             .onSubmit(of: .text) {
                 Task {
-                    await searchPlaces()
+                    if let userLocation = locationManager.userLocation {
+                        await searchPlaces(near: userLocation.coordinate)
+                    }
                 }
             }
             .onChange(of: mapSelection, { oldValue, newValue in
@@ -66,7 +80,7 @@ struct SearchMapView: View {
                     print(createPostViewModel.locationName)
                     createPostViewModel.locationName = name
                     print(createPostViewModel.locationName)
-
+                    
                 }
             })
             .sheet(isPresented: $showDetails, content: {
@@ -82,31 +96,36 @@ struct SearchMapView: View {
                 
             }
         }
+        .onAppear {
+            guard let location = locationManager.userLocation else { return }
+            cameraPosition = .region(MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000))
+        }
     }
 }
 
 extension SearchMapView {
-    func searchPlaces() async {
+
+    func searchPlaces(near userLocation: CLLocationCoordinate2D) async {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = searchText
-        request.region = .userRegion
+        request.region = MKCoordinateRegion(center: userLocation, latitudinalMeters: 10000, longitudinalMeters: 10000)
         
         let results = try? await MKLocalSearch(request: request).start()
         self.results = results?.mapItems ?? []
     }
 }
 
-extension CLLocationCoordinate2D {
-    static var userLocation: CLLocationCoordinate2D {
-        return .init(latitude: 25.7662, longitude: -80.1959)
-    }
-}
-
-extension MKCoordinateRegion {
-    static var userRegion: MKCoordinateRegion {
-        return .init(center: .userLocation, latitudinalMeters: 10000, longitudinalMeters: 10000)
-    }
-}
+//extension CLLocationCoordinate2D {
+//    static var userLocation: CLLocationCoordinate2D {
+//        return .init(latitude: 25.7662, longitude: -80.1959)
+//    }
+//}
+//
+//extension MKCoordinateRegion {
+//    static var userRegion: MKCoordinateRegion {
+//        return .init(center: .userLocation, latitudinalMeters: 10000, longitudinalMeters: 10000)
+//    }
+//}
 //#Preview {
 //    SearchMapView(showDetails: true)
 //}
