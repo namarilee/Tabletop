@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct MealPreviewCell: View {
     @StateObject var createPostViewModel = CreatePostViewModel()
+    @EnvironmentObject var userViewModel: UserViewModel
+    
+    let post: MealPost
 
     var body: some View {
         ZStack {
             HStack(spacing: 20) {
-                Image("sample-meal")
+                Image(post.imageUrl)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(20)
@@ -22,25 +26,23 @@ struct MealPreviewCell: View {
                 
                 VStack (alignment: .leading, spacing: 8.0) {
                     
-                    Text("First time trying this place! It was so good")
+                    Text(post.caption)
                         .font(.custom("ReadexPro-Regular", size: 14))
                     
-                    HStack (spacing: 5){
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color("ttRed"))
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color("ttRed"))
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color("ttRed"))
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color("ttRed"))
-                        Image(systemName: "star.fill")
-                            .foregroundColor(Color("ttRed"))
+                    HStack (spacing: 5) {
+                        ForEach(0...4, id: \.self) { index in
+                            Image(systemName: createPostViewModel.starType(index: post.rating!))
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .foregroundColor(Color("ttRed"))
+                                .frame(width: 20, height: 20)
+                                
+                        }
                     }
                     Button {
                         
                     } label: {
-                        Text("📍 \(createPostViewModel.locationName)")
+                        Text("📍 \(post.locationName)")
                             .font(.custom("ReadexPro-Regular", size: 10))
                             .lineLimit(-1)
                             .padding(7)
@@ -66,5 +68,6 @@ struct MealPreviewCell: View {
 }
 
 #Preview {
-    MealPreviewCell()
+    MealPreviewCell(post: MealPost(ownerUid: "123", caption: "a", timestamp: Timestamp(), rating: 3, locationName: "The Press Cafe", imageUrl: "sample-meal"))
+        .environmentObject(UserViewModel())
 }

@@ -9,6 +9,13 @@ import Foundation
 import Combine
 
 class TodayMealViewModel: ObservableObject {
+    
+    @Published var isPostShared = false
+
+    func sharePost() {
+        // Called when the post is shared
+        isPostShared = true
+    }
         
     // Function to calculate time remaining until midnight
     func timeUntilMidnight() -> String {

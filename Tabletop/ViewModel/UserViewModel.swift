@@ -31,7 +31,7 @@ class UserViewModel: ObservableObject {
     init() {
         self.userSession = Auth.auth().currentUser
         Task {
-            await fetchCurrentUser()
+            try await fetchCurrentUser()
         }
     }
     func signUp(email: String, password: String, username: String) async {
@@ -49,7 +49,7 @@ class UserViewModel: ObservableObject {
                let encodedUser = try Firestore.Encoder().encode(user)
                // Create the document in firestore
                try await Firestore.firestore().collection("users").document(userId).setData(encodedUser)
-               await fetchCurrentUser()
+               try await fetchCurrentUser()
            } catch {
                print(error)
            }
@@ -62,7 +62,7 @@ class UserViewModel: ObservableObject {
                    password: password
                )
                self.userSession = result.user
-               await fetchCurrentUser()
+               try await fetchCurrentUser()
                let userId = result.user.uid
                let email = result.user.email
                print("userId \(userId) email \(email)")
@@ -85,12 +85,20 @@ class UserViewModel: ObservableObject {
         
     }
     
-    func fetchCurrentUser() async {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
-        self.currentUser = try? snapshot.data(as: User.self)
+    // For fetching a user for a post
+    static func fetchUser(withUid uid: String) async throws -> User {
+        let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
+        return try snapshot.data(as: User.self)
+    }
+    
+    func fetchCurrentUser() async throws {
+        self.userSession = Auth.auth().currentUser
+        guard let uid = userSession?.uid else { return }
+        self.currentUser = try await UserViewModel.fetchUser(withUid: uid)
         print("DEBUG: Current user is \(self.currentUser)")
     }
+    
+    
     
     func fetchUsers() async throws -> [User] {
         guard let currentUid = Auth.auth().currentUser?.uid else { return [] }

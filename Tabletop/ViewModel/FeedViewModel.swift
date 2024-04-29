@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import FirebaseFirestore
 
 class FeedViewModel: ObservableObject {
     @Published var posts = [MealPost]()
@@ -19,6 +20,6 @@ class FeedViewModel: ObservableObject {
     
     @MainActor
     func fetchPosts() async throws {
-        self.posts = try await MealPostService.fetchPosts()
+        self.posts = try await MealPostService.fetchFeedPosts()
     }
 }

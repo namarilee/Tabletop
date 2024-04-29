@@ -10,10 +10,13 @@ import PhotosUI
 
 struct ProfilePage: View {
     @EnvironmentObject var userViewModel: UserViewModel
-
+    
+    //var posts: [MealPost]
+    
+    let user: User
     
     var body: some View {
-        if let user = userViewModel.currentUser {
+      //  if let user = userViewModel.currentUser {
             VStack {
                 Spacer()
                     .frame(height: 50)
@@ -70,22 +73,26 @@ struct ProfilePage: View {
                     .background(Color.white)
                     .foregroundColor(Color.black)
                     .cornerRadius(20)
-
+                    
                 }
                 Button("Log out") {
                     userViewModel.signOut()
                 }
+                
+                PostGridView(user: user)
+                
                 Spacer()
             }
-            .padding()
-            .background(Color("lightPurpleBG"))
-            .ignoresSafeArea()
-        }
+                .padding()
+                .background(Color("lightPurpleBG"))
+                .ignoresSafeArea()
+            }
+      //  }
     }
-}
+
 
 #Preview {
-    ProfilePage()
+    ProfilePage(user: User.MOCK_USER)
         .environmentObject(UserViewModel())
 
 }

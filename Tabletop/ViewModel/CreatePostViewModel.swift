@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 import PhotosUI
 import SwiftUI
 
@@ -16,6 +17,7 @@ class CreatePostViewModel: ObservableObject {
     @Published var ratingSelected = false
     @Published var imageSelected = false
     @Published var locationName = "Tap to add..."
+    
     @Published var mealImage: Image?
     private var uiImage: UIImage?
 
@@ -34,7 +36,11 @@ class CreatePostViewModel: ObservableObject {
         }
     }
     
+    @Published var imageUrl: String = ""
+    
     @Published var rating: Int?
+    
+    @Published var post: MealPost?
     
     func starType(index: Int) -> String {
         if let rate = rating {
@@ -58,15 +64,20 @@ class CreatePostViewModel: ObservableObject {
     }
     
     func uploadPost(caption: String) async throws {
+        print("uploadPost called")
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let uiImage = uiImage else { return }
+        guard let uiImage = self.uiImage else { return }
         
-        let postRef = Firestore.firestore().collection("posts").document()
+        let postRef = Firestore.firestore().collection("meal_posts").document()
+        print("get collection")
         guard let imageUrl = try await ImageUploader.uploadImage(folderName: "meal_images", uiImage) else { return }
-        let post = MealPost(postId: postRef.documentID, ownerUid: uid, caption: caption, timestamp: Timestamp(), rating: rating, locationName: locationName, imageUrl: imageUrl)
+        print("imageUrl created")
+        let post = MealPost(postId: postRef.documentID, ownerUid: uid, caption: caption, timestamp: Timestamp(), rating: rating!, locationName: locationName, imageUrl: imageUrl)
+        print("post was created")
         guard let encodedPost = try? Firestore.Encoder().encode(post) else { return }
 
         try await postRef.setData(encodedPost)
+        print("end of uploadPost")
     }
 
 }

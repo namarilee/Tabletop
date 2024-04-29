@@ -15,12 +15,15 @@ struct CreatePostPage: View {
     @StateObject var createPostViewModel = CreatePostViewModel()
     @State var captionTapped = false
 
-    
+    @StateObject var todayMealViewModel = TodayMealViewModel()
+
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var mealImage: UIImage?
     
-   
     
+   @State private var locationName = "Tap to add.."
+    
+
     private let ratingCaptions = ["Bad 😭", "Okay 😐", "Good 🙂", "Great 😄", "Awesome! 😍"]
     
     var body: some View {
@@ -73,7 +76,7 @@ struct CreatePostPage: View {
                         .font(.custom("ReadexPro-Regular", size: 16))
                         .foregroundColor(Color("ttGray"))
                     
-                    HStack (spacing: 12){
+                    HStack (spacing: 12) {
                         ForEach(0...4, id: \.self) { index in
                             Image(systemName: createPostViewModel.starType(index: index))
                                 .resizable()
@@ -159,6 +162,8 @@ struct CreatePostPage: View {
                             try await createPostViewModel.uploadPost(caption: createPostViewModel.caption)
                         }
                         dismiss()
+                        todayMealViewModel.sharePost()
+                        print("isPostShared: \(todayMealViewModel.isPostShared)") // Access the boolean variable directly
                     }
                     .disabled(!createPostViewModel.isUserAllowedToPost())
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 24))
@@ -191,7 +196,7 @@ struct CreatePostPage: View {
 }
 
 #Preview {
-    CreatePostPage(createPostViewModel: CreatePostViewModel())
+    CreatePostPage()
         .environmentObject(UserViewModel())
 }
 

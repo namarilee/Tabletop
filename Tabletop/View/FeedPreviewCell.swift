@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import Kingfisher
 
 struct FeedPreviewCell: View {
     @StateObject var createPostViewModel = CreatePostViewModel()
@@ -17,7 +18,7 @@ struct FeedPreviewCell: View {
     var body: some View {
         if let user = post.user {
             if let imageUrl = user.imageUrl, !imageUrl.isEmpty {
-                Image(imageUrl)
+                KFImage(URL(string: imageUrl))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 100, height: 100)
@@ -38,7 +39,7 @@ struct FeedPreviewCell: View {
             
         
         VStack (spacing: -1) {
-            Image(post.imageUrl!)
+            Image(post.imageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .cornerRadius(20)
@@ -57,7 +58,7 @@ struct FeedPreviewCell: View {
 }
 
 #Preview {
-    FeedPreviewCell(post: MealPost(ownerUid: "123", caption: "asdf", timestamp: Timestamp(), locationName: "", imageUrl: "sample-meal"))
+    FeedPreviewCell(post: MealPost(ownerUid: "123", caption: "asdf", timestamp: Timestamp(), rating: 4, locationName: "", imageUrl: "sample-meal"))
         .environmentObject(UserViewModel())
 }
 

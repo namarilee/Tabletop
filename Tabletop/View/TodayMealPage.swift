@@ -11,6 +11,9 @@ struct TodayMealPage: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @StateObject var todayMealViewModel = TodayMealViewModel()
+    @StateObject var createPostViewModel = CreatePostViewModel()
+
+    
     
     // Function to determine which cell to display based on current time
     func mealCellForTime(mealType: MealType) -> some View {
@@ -27,7 +30,11 @@ struct TodayMealPage: View {
                 mealStartTime = 17
         }
         
-        if now >= mealStartTime {
+        if todayMealViewModel.isPostShared {
+            return AnyView(MealPreviewCell(post: createPostViewModel.post!))
+        }
+        
+        if !todayMealViewModel.isPostShared && now >= mealStartTime {
             return AnyView(AddMealCell())
         } else {
             return AnyView(NotTimeYetCell(mealType: mealType))
@@ -45,27 +52,34 @@ struct TodayMealPage: View {
                         .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
                         .foregroundColor(Color("ttPurple"))
                     
+                
+                    
                     Text("Breakfast")
                         .font(.custom("ReadexPro-Regular_Medium", size: 20))
                         .foregroundColor(Color("ttBlack"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     
-                    mealCellForTime(mealType: .breakfast)
-
+                        mealCellForTime(mealType: .breakfast)
+                    
+                    
                     Text("Lunch")
                         .font(.custom("ReadexPro-Regular_Medium", size: 20))
                         .foregroundColor(Color("ttBlack"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    mealCellForTime(mealType: .lunch)
-
+                   
+                        mealCellForTime(mealType: .lunch)
+                    
+                    
                     Text("Dinner")
                         .font(.custom("ReadexPro-Regular_Medium", size: 20))
                         .foregroundColor(Color("ttBlack"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    mealCellForTime(mealType: .dinner)
+                   
+                        mealCellForTime(mealType: .dinner)
+                    
                 }
                 .padding(.horizontal, 30)
             }
