@@ -17,10 +17,16 @@ struct SplashPage: View {
                 
                 VStack {
                     Spacer()
-                    Text("tabletop")
-                        .font(.custom("ReadexPro-Regular_Bold", size: 50))
-                        .foregroundColor(Color("ttPurple"))
+                    Image("tabletop_logo")
+                        .resizable(resizingMode: .stretch)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 300, height: 141)
                     
+                    
+//                    Text("tabletop")
+//                        .font(.custom("ReadexPro-Regular_Bold", size: 50))
+//                        .foregroundColor(Color("ttPurple"))
+//                    
                     
                     Spacer()
 //                    NavigationLink(value: "create_caccount") {
