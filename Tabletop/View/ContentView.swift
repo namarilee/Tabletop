@@ -12,11 +12,10 @@ struct ContentView: View {
 
     @EnvironmentObject var userViewModel: UserViewModel
     
-    @State var isSignIn: Bool = UserDefaults.standard.bool(forKey: "isSignIn")
 
         var body: some View {
             Group {
-                if userViewModel.userSession != nil || isSignIn {
+                if userViewModel.userSession != nil || userViewModel.isSignedInWithGoogle {
                     MainTabView()
                 } else {
                     SplashPage()

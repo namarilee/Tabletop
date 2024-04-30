@@ -17,6 +17,8 @@ import SwiftUI
 class UserViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var isSignedInWithGoogle: Bool = UserDefaults.standard.bool(forKey: "isSignIn")
+
     @Published var selectedItem: PhotosPickerItem? {
         didSet {
             Task {

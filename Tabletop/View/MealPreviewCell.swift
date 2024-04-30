@@ -7,9 +7,10 @@
 
 import SwiftUI
 import FirebaseFirestore
+import Kingfisher
 
 struct MealPreviewCell: View {
-    @StateObject var createPostViewModel = CreatePostViewModel()
+    @EnvironmentObject var createPostViewModel: CreatePostViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
     let post: MealPost
@@ -26,7 +27,7 @@ struct MealPreviewCell: View {
         ZStack {
             HStack(spacing: 20) {
                 NavigationLink(destination: PostDetailPage(post: post)) {
-                    Image(post.imageUrl)
+                    KFImage(URL(string: post.imageUrl))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .cornerRadius(20)

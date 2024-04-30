@@ -10,7 +10,7 @@ import FirebaseFirestore
 import Kingfisher
 
 struct PostDetailPage: View {
-    @StateObject var createPostViewModel = CreatePostViewModel()
+    @EnvironmentObject var createPostViewModel: CreatePostViewModel
     @EnvironmentObject var userViewModel: UserViewModel
 
     let post: MealPost
@@ -26,11 +26,10 @@ struct PostDetailPage: View {
     var body: some View {
         ScrollView {
             VStack (spacing: 20) {
-                Text("@\(post.user?.username ?? "")")
+                Text("\(post.user?.username ?? "")")
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 20))
                     .foregroundColor(Color("ttPurple"))
-                //KFImage(URL(string: post.imageUrl))
-                Image(post.imageUrl)
+                KFImage(URL(string: post.imageUrl))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .cornerRadius(20)

@@ -91,8 +91,7 @@ struct SignInPage: View {
                             return
                         }
                         // load the current user for the user view model
-                        // userViewModel.currentUser = User(id: <#T##String?#>, username: <#T##String#>, userEmail: <#T##String#>, imageUrl: <#T##String?#>)
-                        UserDefaults.standard.set(true, forKey: "signIn")
+                        userViewModel.isSignedInWithGoogle = true
                     }
                 }
             }
