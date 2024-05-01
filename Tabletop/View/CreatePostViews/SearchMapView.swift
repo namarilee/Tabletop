@@ -92,8 +92,6 @@ struct SearchMapView: View {
             .mapControls {
                 MapCompass()
                 MapPitchToggle()
-                //MapUserLocationButton()
-                
             }
         }
         .onAppear {
@@ -114,18 +112,3 @@ extension SearchMapView {
         self.results = results?.mapItems ?? []
     }
 }
-
-//extension CLLocationCoordinate2D {
-//    static var userLocation: CLLocationCoordinate2D {
-//        return .init(latitude: 25.7662, longitude: -80.1959)
-//    }
-//}
-//
-//extension MKCoordinateRegion {
-//    static var userRegion: MKCoordinateRegion {
-//        return .init(center: .userLocation, latitudinalMeters: 10000, longitudinalMeters: 10000)
-//    }
-//}
-//#Preview {
-//    SearchMapView(showDetails: true)
-//}

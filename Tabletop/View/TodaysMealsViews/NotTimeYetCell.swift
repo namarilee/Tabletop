@@ -15,19 +15,20 @@ enum MealType {
 
 
 struct NotTimeYetCell: View {
-    @StateObject var todayMealViewModel = TodayMealViewModel()
+    @EnvironmentObject var todayMealViewModel: TodayMealViewModel
+
+    let mealType: MealType
     
-    let mealType: MealType // Get the respective meal's start time
-        var mealStartTime: Int {
-            switch mealType {
-                case .breakfast:
-                    return 6
-                case .lunch:
-                    return 11
-                case .dinner:
-                    return 17
-            }
+    var mealStartTime: Int { // Get the respective meal's start time
+        switch mealType {
+            case .breakfast:
+                return 6
+            case .lunch:
+                return 11
+            case .dinner:
+                return 17
         }
+    }
     
     var body: some View {
         ZStack {

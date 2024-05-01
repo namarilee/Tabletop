@@ -30,12 +30,3 @@ struct FeedPreviewCell: View {
     FeedPreviewCell(post: MealPost(ownerUid: "123", caption: "asdf", timestamp: Timestamp(), rating: 4, locationName: "", imageUrl: "sample-meal"))
         .environmentObject(UserViewModel())
 }
-
-// Enables us to use display the mock post
-//struct FeedPreviewCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FeedPreviewCell(post: DeveloperPreview.MOCK_POST)
-//            .environmentObject(UserViewModel())
-//
-//    }
-//}

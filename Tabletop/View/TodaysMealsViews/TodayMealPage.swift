@@ -35,7 +35,7 @@ struct TodayMealPage: View {
 //        if todayMealViewModel.isPostShared {
 //            return AnyView(MealPreviewCell(post: createPostViewModel.post!))
 //        }
-//        
+//
         if !todayMealViewModel.isPostShared && now >= mealStartTime {
             return AnyView(AddMealCell())
         } else {

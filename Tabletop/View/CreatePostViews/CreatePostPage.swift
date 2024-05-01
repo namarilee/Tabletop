@@ -30,14 +30,12 @@ struct CreatePostPage: View {
     
     @State private var isShowingMapView = false
     
-    
     @State private var locationName = "Tap to add.."
     
     
     private let ratingCaptions = ["Bad 😭", "Okay 😐", "Good 🙂", "Great 😄", "Awesome! 😍"]
     
     var body: some View {
-       // NavigationView {
             ScrollView {
                 Text("Create Post")
                     .font(.custom("ReadexPro-Regular_SemiBold", size: 30))
@@ -77,12 +75,8 @@ struct CreatePostPage: View {
                         ImagePickerView(sourceType: sourceType, didSelectImage: { image in
                             Task {
                                 createPostViewModel.isImageSelected = true
-                                //                                    print(createPostViewModel.imageSelected)
                                 mealImage = image
                                 createPostViewModel.uiImage = image
-
-                                //}
-                                
                                 photosPickerItem = nil
                             }
                         })
@@ -112,6 +106,7 @@ struct CreatePostPage: View {
                                 .frame(width: /*@START_MENU_TOKEN@*/40.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/40.0/*@END_MENU_TOKEN@*/)
                                 .onTapGesture {
                                     createPostViewModel.rating = index
+                                    print("rating: \(createPostViewModel.rating ?? 46)")
                                     createPostViewModel.ratingSelected = true
                                 }
                         }
@@ -194,6 +189,7 @@ struct CreatePostPage: View {
                             Task {
                                 do {
                                     try await createPostViewModel.uploadPost(caption: createPostViewModel.caption)
+                                    print()
                                 } catch {
                                     print("Error uploading post: \(error)")
 
@@ -202,6 +198,8 @@ struct CreatePostPage: View {
                                 try await feedViewModel.fetchPosts()
                                 
                                 todayMealViewModel.isPostShared = true
+
+                                
                             }
                             dismiss()
                         }
@@ -221,7 +219,6 @@ struct CreatePostPage: View {
             }
             .background(Color("lightPurpleBG"))
             
-        //}
     }
 }
 
@@ -230,7 +227,7 @@ struct CreatePostPage: View {
         .environmentObject(UserViewModel())
         .environmentObject(FeedViewModel())
         .environmentObject(TodayMealViewModel())
-
+        .environmentObject(CreatePostViewModel())
 }
 
 

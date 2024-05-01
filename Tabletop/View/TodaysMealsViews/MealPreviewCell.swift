@@ -22,7 +22,7 @@ struct MealPreviewCell: View {
             return "star"
         }
     }
-
+    
     var body: some View {
         ZStack {
             HStack(spacing: 20) {
@@ -40,13 +40,19 @@ struct MealPreviewCell: View {
                         .font(.custom("ReadexPro-Regular", size: 14))
                     
                     HStack (spacing: 5) {
-                        ForEach(0...4, id: \.self) { index in
-                            Image(systemName: starType(index: post.rating!))
+                        ForEach(0...(post.rating ?? 5), id: \.self) { index in
+                            Image(systemName: "star.fill")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .foregroundColor(Color("ttRed"))
                                 .frame(width: 20, height: 20)
-                            
+                        }
+                        ForEach(0..<((4 - post.rating!)), id: \.self) { index in
+                            Image(systemName: "star")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .foregroundColor(Color("ttRed"))
+                                .frame(width: 20, height: 20)
                         }
                     }
                     
@@ -68,7 +74,7 @@ struct MealPreviewCell: View {
                             )
                     }
                 }
-                   
+                
                 
             }
             .padding(25)

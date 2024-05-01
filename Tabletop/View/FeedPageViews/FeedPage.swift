@@ -16,6 +16,7 @@ struct FeedPage: View {
         GridItem(.flexible(minimum: 120))
     ]
     
+    
     var body: some View {
         ScrollView {
             
@@ -24,7 +25,7 @@ struct FeedPage: View {
                 .foregroundColor(Color("ttPurple"))
             
             LazyVGrid(columns: items, spacing: 10) {
-                ForEach(feedViewModel.posts) { post in
+                ForEach(feedViewModel.posts.sorted(by: { $0.timestamp > $1.timestamp })) { post in
                     NavigationLink(destination: PostDetailPage(post: post)) {
                         FeedPreviewCell(post: post)
                     }

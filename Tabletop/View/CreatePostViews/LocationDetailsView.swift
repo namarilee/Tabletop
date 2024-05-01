@@ -94,6 +94,3 @@ extension LocationDetailsView {
     }
 }
 
-//#Preview {
-//    LocationDetailsView(mapSelection: .constant(nil), show: .constant(false), showDetails: $showDetails)
-//}

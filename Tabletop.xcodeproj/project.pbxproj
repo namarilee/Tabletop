@@ -150,23 +150,12 @@
 			isa = PBXGroup;
 			children = (
 				7AE1C04D2BC4CE1A0023C380 /* ContentView.swift */,
-				7AD655162BC4D7AD00DDC39D /* SplashPage.swift */,
 				7A6F98F92BD6EE4600E0BC1C /* MainTabView.swift */,
-				7A6F99052BDCEABA00E0BC1C /* SearchMapView.swift */,
-				7A6F99072BDCF4BB00E0BC1C /* LocationDetailsView.swift */,
-				7A6F98FB2BD6EEC600E0BC1C /* FeedPage.swift */,
-				7A9EBCF52BDF879A00F8A6E3 /* PostDetailPage.swift */,
-				7A6F99182BDE04AE00E0BC1C /* FeedPreviewCell.swift */,
-				7A59826D2BC7940700DABB81 /* ProfilePage.swift */,
-				7A9EBCE82BDF183400F8A6E3 /* PostGridView.swift */,
-				7A59826B2BC78DF900DABB81 /* SignInPage.swift */,
-				7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */,
-				7A51E4C32BC4F80D00EA3EC6 /* TodayMealPage.swift */,
-				7A6F990F2BDDD8A200E0BC1C /* MealPreviewCell.swift */,
-				7A6F99112BDDD9EF00E0BC1C /* AddMealCell.swift */,
-				7A6F99132BDDDA1900E0BC1C /* NotTimeYetCell.swift */,
-				7A6F99012BDC9C9E00E0BC1C /* CreatePostPage.swift */,
-				7A9EBCEA2BDF379400F8A6E3 /* ImagePickerView.swift */,
+				7A57B3152BE2DEEE0036000F /* AuthViews */,
+				7A57B3192BE2E3420036000F /* FeedPageViews */,
+				7A57B3182BE2E3010036000F /* ProfilePageViews */,
+				7A57B3162BE2E2280036000F /* TodaysMealsViews */,
+				7A57B3172BE2E28F0036000F /* CreatePostViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,6 +173,57 @@
 				7A9EBCF72BDFA36000F8A6E3 /* LocationManager.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7A57B3152BE2DEEE0036000F /* AuthViews */ = {
+			isa = PBXGroup;
+			children = (
+				7AD655162BC4D7AD00DDC39D /* SplashPage.swift */,
+				7A59826B2BC78DF900DABB81 /* SignInPage.swift */,
+				7ABE85E92BC766100066C1CF /* CreateAccountPage.swift */,
+			);
+			path = AuthViews;
+			sourceTree = "<group>";
+		};
+		7A57B3162BE2E2280036000F /* TodaysMealsViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A51E4C32BC4F80D00EA3EC6 /* TodayMealPage.swift */,
+				7A6F990F2BDDD8A200E0BC1C /* MealPreviewCell.swift */,
+				7A6F99112BDDD9EF00E0BC1C /* AddMealCell.swift */,
+				7A6F99132BDDDA1900E0BC1C /* NotTimeYetCell.swift */,
+				7A9EBCF52BDF879A00F8A6E3 /* PostDetailPage.swift */,
+			);
+			path = TodaysMealsViews;
+			sourceTree = "<group>";
+		};
+		7A57B3172BE2E28F0036000F /* CreatePostViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A6F99012BDC9C9E00E0BC1C /* CreatePostPage.swift */,
+				7A6F99052BDCEABA00E0BC1C /* SearchMapView.swift */,
+				7A6F99072BDCF4BB00E0BC1C /* LocationDetailsView.swift */,
+				7A9EBCEA2BDF379400F8A6E3 /* ImagePickerView.swift */,
+			);
+			path = CreatePostViews;
+			sourceTree = "<group>";
+		};
+		7A57B3182BE2E3010036000F /* ProfilePageViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A59826D2BC7940700DABB81 /* ProfilePage.swift */,
+				7A9EBCE82BDF183400F8A6E3 /* PostGridView.swift */,
+			);
+			path = ProfilePageViews;
+			sourceTree = "<group>";
+		};
+		7A57B3192BE2E3420036000F /* FeedPageViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A6F98FB2BD6EEC600E0BC1C /* FeedPage.swift */,
+				7A6F99182BDE04AE00E0BC1C /* FeedPreviewCell.swift */,
+			);
+			path = FeedPageViews;
 			sourceTree = "<group>";
 		};
 		7A59826A2BC7874E00DABB81 /* Model */ = {

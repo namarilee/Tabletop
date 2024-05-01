@@ -7,6 +7,9 @@
 
 import SwiftUI
 import FirebaseAuth
+import GoogleSignIn
+import GoogleSignInSwift
+import FirebaseCore
 
 struct CreateAccountPage: View {
     @State private var username = ""
@@ -86,6 +89,48 @@ struct CreateAccountPage: View {
                 .foregroundColor(Color.white)
                 .cornerRadius(20)
                 .disabled(username.isEmpty || email.isEmpty || password.isEmpty || confirmPassword.isEmpty || !passwordsMatch())
+            
+            Spacer()
+                .frame(height: 20)
+            
+            Text("or")
+                .font(Font.custom("ReadexPro-Regular_Light", size: 16))
+                .multilineTextAlignment(.center)
+            
+            Spacer()
+                .frame(height: 20)
+            
+            GoogleSignInButton {
+                guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+                // Create Google Sign In configuration object.
+                let config = GIDConfiguration(clientID: clientID)
+                GIDSignIn.sharedInstance.configuration = config
+
+                // Start the sign in flow!
+                GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { result, error in
+                  guard error == nil else {
+                      return
+                  }
+
+                  guard let user = result?.user,
+                    let idToken = user.idToken?.tokenString
+                  else {
+                      return
+                  }
+
+                  let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+
+                    Auth.auth().signIn(with: credential) { result, error in
+                        guard error == nil else {
+                            return
+                        }
+                        // load the current user for the user view model
+                        userViewModel.isSignedInWithGoogle = true
+                    }
+                }
+            }
+
         Spacer()
         }
         .padding(50)

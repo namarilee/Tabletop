@@ -64,7 +64,16 @@ struct SignInPage: View {
                 .cornerRadius(20)
                 .disabled(email.isEmpty || password.isEmpty)
 
+            Spacer()
+                .frame(height: 20)
+            
             Text("or")
+                .font(Font.custom("ReadexPro-Regular_Light", size: 16))
+                .multilineTextAlignment(.center)
+            
+            Spacer()
+                .frame(height: 20)
+            
             GoogleSignInButton {
                 guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 

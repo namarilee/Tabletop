@@ -15,20 +15,11 @@ struct PostDetailPage: View {
 
     let post: MealPost
     
-    func starType(index: Int) -> String {
-        if let rate = post.rating {
-            return index <= rate ? "star.fill" : "star"
-        } else {
-            return "star"
-        }
-    }
-    
     var body: some View {
         ScrollView {
             VStack (spacing: 20) {
-                Text("\(post.user?.username ?? "")")
-                    .font(.custom("ReadexPro-Regular_SemiBold", size: 20))
-                    .foregroundColor(Color("ttPurple"))
+                
+                
                 KFImage(URL(string: post.imageUrl))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -52,15 +43,22 @@ struct PostDetailPage: View {
                         )
                 }
                 HStack (spacing: 5) {
-                    ForEach(0...4, id: \.self) { index in
-                        Image(systemName: starType(index: post.rating!))
+                    ForEach(0...(post.rating ?? 5), id: \.self) { index in
+                        Image(systemName: "star.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .foregroundColor(Color("ttRed"))
-                            .frame(width: 40, height: 40)
-                        
+                            .frame(width: 20, height: 20)
+                    }
+                    ForEach(0..<((4 - post.rating!)), id: \.self) { index in
+                        Image(systemName: "star")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .foregroundColor(Color("ttRed"))
+                            .frame(width: 20, height: 20)
                     }
                 }
+
                 Text(post.caption)
                     .font(.custom("ReadexPro-Regular", size: 18))
                     .multilineTextAlignment(.center)

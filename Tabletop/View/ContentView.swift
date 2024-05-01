@@ -12,7 +12,6 @@ struct ContentView: View {
 
     @EnvironmentObject var userViewModel: UserViewModel
     
-
         var body: some View {
             Group {
                 if userViewModel.userSession != nil || userViewModel.isSignedInWithGoogle {
@@ -22,9 +21,6 @@ struct ContentView: View {
                 }
             }
             .environmentObject(userViewModel)
-//            .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
-//                        self.isSignIn = UserDefaults.standard.bool(forKey: "signIn")
-//                    }
         }
 }
 

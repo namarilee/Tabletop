@@ -21,29 +21,12 @@ struct SplashPage: View {
                         .resizable(resizingMode: .stretch)
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 300, height: 141)
-                    
-                    
-//                    Text("tabletop")
-//                        .font(.custom("ReadexPro-Regular_Bold", size: 50))
-//                        .foregroundColor(Color("ttPurple"))
-//                    
-                    
+                                      
                     Spacer()
-//                    NavigationLink(value: "create_caccount") {
-//                        Text("Get started")
-//                            .font(Font.custom("ReadexPro-Regular_Medium", size: 25))
-//
-//                            .font(.title2)
-//                            .frame(width: 311, height: 48, alignment: .center)
-//                            .background(Color("ttBlack"))
-//                            .foregroundColor(Color.white)
-//                            .cornerRadius(20)
-//                    }
-                    
+
                     NavigationLink(destination: CreateAccountPage()) {
                         Text("Get started")
                             .font(Font.custom("ReadexPro-Regular_Medium", size: 25))
-
                             .font(.title2)
                             .frame(width: 311, height: 48, alignment: .center)
                             .background(Color("ttBlack"))
@@ -70,12 +53,6 @@ struct SplashPage: View {
                     Spacer()
                 }
             }
-//            .navigationDestination(for: String.self) {
-//                if $0 == "create_accunt" {
-//                    CreateAccountPage()
-//                }
-//            }
-            //.padding()
         }
         .background(Color("lightPurpleBG"))
         .ignoresSafeArea()

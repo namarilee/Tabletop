@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddMealCell: View {
-    @StateObject var todayMealViewModel = TodayMealViewModel()
+    @EnvironmentObject var todayMealViewModel: TodayMealViewModel
 
     var body: some View {
         ZStack {
