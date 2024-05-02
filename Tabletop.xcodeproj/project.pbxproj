@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A51E4C42BC4F80D00EA3EC6 /* TodayMealPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A51E4C32BC4F80D00EA3EC6 /* TodayMealPage.swift */; };
+		7A57B31B2BE30CAE0036000F /* LocationCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A57B31A2BE30CAE0036000F /* LocationCaptionCell.swift */; };
 		7A5982692BC785B900DABB81 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5982682BC785B900DABB81 /* User.swift */; };
 		7A59826C2BC78DF900DABB81 /* SignInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A59826B2BC78DF900DABB81 /* SignInPage.swift */; };
 		7A59826E2BC7940700DABB81 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A59826D2BC7940700DABB81 /* ProfilePage.swift */; };
@@ -72,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		7A51E4C32BC4F80D00EA3EC6 /* TodayMealPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMealPage.swift; sourceTree = "<group>"; };
+		7A57B31A2BE30CAE0036000F /* LocationCaptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCaptionCell.swift; sourceTree = "<group>"; };
 		7A5982682BC785B900DABB81 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7A59826B2BC78DF900DABB81 /* SignInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPage.swift; sourceTree = "<group>"; };
 		7A59826D2BC7940700DABB81 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				7A6F99012BDC9C9E00E0BC1C /* CreatePostPage.swift */,
+				7A57B31A2BE30CAE0036000F /* LocationCaptionCell.swift */,
 				7A6F99052BDCEABA00E0BC1C /* SearchMapView.swift */,
 				7A6F99072BDCF4BB00E0BC1C /* LocationDetailsView.swift */,
 				7A9EBCEA2BDF379400F8A6E3 /* ImagePickerView.swift */,
@@ -494,6 +497,7 @@
 				7A6F99082BDCF4BB00E0BC1C /* LocationDetailsView.swift in Sources */,
 				7AE1C04C2BC4CE1A0023C380 /* TabletopApp.swift in Sources */,
 				7A6F990C2BDDA86A00E0BC1C /* MealPostService.swift in Sources */,
+				7A57B31B2BE30CAE0036000F /* LocationCaptionCell.swift in Sources */,
 				7A5982692BC785B900DABB81 /* User.swift in Sources */,
 				7A6F98FA2BD6EE4600E0BC1C /* MainTabView.swift in Sources */,
 				7A6F990A2BDDA76900E0BC1C /* MealPost.swift in Sources */,

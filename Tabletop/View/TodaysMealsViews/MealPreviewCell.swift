@@ -15,14 +15,7 @@ struct MealPreviewCell: View {
     
     let post: MealPost
     
-    func starType(index: Int) -> String {
-        if let rate = post.rating {
-            return index <= rate ? "star.fill" : "star"
-        } else {
-            return "star"
-        }
-    }
-    
+
     var body: some View {
         ZStack {
             HStack(spacing: 20) {
@@ -39,7 +32,9 @@ struct MealPreviewCell: View {
                     Text(post.caption)
                         .font(.custom("ReadexPro-Regular", size: 14))
                     
+                    // Displays star-rating that the user selected
                     HStack (spacing: 5) {
+                        // Determines how many filled stars to show
                         ForEach(0...(post.rating ?? 5), id: \.self) { index in
                             Image(systemName: "star.fill")
                                 .resizable()
@@ -47,6 +42,7 @@ struct MealPreviewCell: View {
                                 .foregroundColor(Color("ttRed"))
                                 .frame(width: 20, height: 20)
                         }
+                        // Determines how many empty stars to show
                         ForEach(0..<((4 - post.rating!)), id: \.self) { index in
                             Image(systemName: "star")
                                 .resizable()

@@ -28,6 +28,7 @@ class LocationManager: NSObject, ObservableObject {
     
 }
 
+// Handles permissions from user to get location
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
@@ -46,6 +47,7 @@ extension LocationManager: CLLocationManagerDelegate {
         }
     }
     
+    // Get the user's current location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         self.userLocation = location

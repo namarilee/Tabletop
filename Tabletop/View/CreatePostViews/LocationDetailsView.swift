@@ -83,6 +83,7 @@ struct LocationDetailsView: View {
 }
 
 extension LocationDetailsView {
+    // Gets the LookAround scene for a map selection
     func fetchLookAroundPreview() {
         if let mapSelection {
             lookAroundScene = nil

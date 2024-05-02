@@ -11,7 +11,6 @@ import PhotosUI
 struct ProfilePage: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
-    
     let user: User
     
     var body: some View {

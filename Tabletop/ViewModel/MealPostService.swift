@@ -12,6 +12,7 @@ struct MealPostService {
     
     private static let postsCollection = Firestore.firestore().collection("meal_posts")
     
+    // Fetches all the feed posts in firebase
     static func fetchFeedPosts() async throws -> [MealPost] {
         let snapshot = try await postsCollection.getDocuments()
         print("got snapshot")

@@ -10,6 +10,7 @@ import Firebase
 import FirebaseStorage
 
 struct ImageUploader {
+    // Uploads image to firestore given the folder name
     static func uploadImage(folderName: String, _ image: UIImage) async throws -> String? {
         guard let imageData = image.jpegData(compressionQuality: 0.25) else { return nil }
         let filename = NSUUID().uuidString

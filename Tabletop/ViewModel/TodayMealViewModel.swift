@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class TodayMealViewModel: ObservableObject {
     
@@ -15,6 +16,28 @@ class TodayMealViewModel: ObservableObject {
     func sharePost() {
         // Called when the post is shared
         isPostShared = true
+    }
+    
+    // Function to determine which cell to display based on current time
+    func mealCellForTime(mealType: MealType) -> some View {
+        let now = Calendar.current.component(.hour, from: Date())
+        
+        let mealStartTime: Int
+            
+        switch mealType {
+            case .breakfast:
+                mealStartTime = 6
+            case .lunch:
+                mealStartTime = 11
+            case .dinner:
+                mealStartTime = 17
+        }
+
+        if !isPostShared && now >= mealStartTime {
+            return AnyView(AddMealCell())
+        } else {
+            return AnyView(NotTimeYetCell(mealType: mealType))
+        }
     }
         
     // Function to calculate time remaining until midnight

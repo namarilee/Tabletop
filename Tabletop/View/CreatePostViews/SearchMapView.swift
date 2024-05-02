@@ -17,9 +17,6 @@ struct SearchMapView: View {
     }
     
     @State private var cameraPosition: MapCameraPosition = .region(userRegion)
-    
-    
-    
     @State private var searchText = ""
     @State private var results = [MKMapItem]()
     @State private var mapSelection: MKMapItem?
@@ -77,10 +74,8 @@ struct SearchMapView: View {
             .onChange(of: mapSelection, { oldValue, newValue in
                 showDetails = newValue != nil
                 if let name = mapSelection?.placemark.name {
-                    print(createPostViewModel.locationName)
                     createPostViewModel.locationName = name
                     print(createPostViewModel.locationName)
-                    
                 }
             })
             .sheet(isPresented: $showDetails, content: {
@@ -102,7 +97,7 @@ struct SearchMapView: View {
 }
 
 extension SearchMapView {
-
+    // Search for places given a query and display the relevant results that are in the user's region
     func searchPlaces(near userLocation: CLLocationCoordinate2D) async {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = searchText

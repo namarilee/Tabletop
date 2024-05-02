@@ -20,6 +20,8 @@ class PostGridViewModel: ObservableObject {
         }
     }
     
+    // Gets all the posts associated with a user
+    // Used for profile page
     @MainActor
     func fetchUserPosts() async throws {
         self.posts = try await MealPostService.fetchUserPosts(uid: user.id!)

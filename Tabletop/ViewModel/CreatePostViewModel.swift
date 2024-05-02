@@ -28,6 +28,8 @@ class CreatePostViewModel: ObservableObject {
             }
         }
     }
+    
+    // Checks if the caption is within the char limit of 1000
     @Published var caption = "" {
         didSet {
             if caption.count >= 1000 && oldValue.count <= 1000 {
@@ -42,6 +44,7 @@ class CreatePostViewModel: ObservableObject {
     
     @Published var post: MealPost?
     
+    // Determines how many stars are filled or not based on the selected rating
     func starType(index: Int) -> String {
         if let rate = rating {
             return index <= rate ? "star.fill" : "star"
@@ -49,20 +52,22 @@ class CreatePostViewModel: ObservableObject {
             return "star"
         }
     }
-    
+        
+    // Used to determine if "Share" button is disabled
     func isUserAllowedToPost() -> Bool {
         return ratingSelected && isImageSelected && !caption.isEmpty
     }
     
-   
+   // Loads image from the photos picker item
     private func loadImage(fromItem item: PhotosPickerItem?) async {
         guard let item = item else { return }
         guard let data = try? await item.loadTransferable(type: Data.self) else { return }
         guard let uiImage = UIImage(data: data) else { return }
-        self.uiImage = uiImage
+        self.uiImage = uiImage // Set the UIImage to the property
         self.mealImage = Image(uiImage: uiImage)
     }
     
+    // Creates a post in the firebase database
     func uploadPost(caption: String) async throws {
         print("uploadPost called")
         do {
