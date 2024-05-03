@@ -34,6 +34,7 @@ struct MealPost: Identifiable, Hashable, Codable {
     }
 }
 
+// Allows timestamp to conform to comparable (used in FeedPage to display posts in descending order)
 extension Timestamp: Comparable {
     public static func < (lhs: Timestamp, rhs: Timestamp) -> Bool {
         return lhs.seconds < rhs.seconds || (lhs.seconds == rhs.seconds && lhs.nanoseconds < rhs.nanoseconds)

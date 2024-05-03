@@ -18,7 +18,7 @@ class UserViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     @Published var isSignedInWithGoogle: Bool = UserDefaults.standard.bool(forKey: "isSignIn")
-
+    
     @Published var selectedItem: PhotosPickerItem? {
         didSet {
             Task {
@@ -36,42 +36,45 @@ class UserViewModel: ObservableObject {
             try await fetchCurrentUser()
         }
     }
+    
+    // Creates an account for the user
     func signUp(email: String, password: String, username: String) async {
-           do {
-               let result = try await Auth.auth().createUser(
-                   withEmail: email,
-                   password: password
-               )
-               self.userSession = result.user
-               let user = User(id: result.user.uid, username: username, userEmail: email)
-               let userId = result.user.uid
-               let email = result.user.email
-               print("userId \(userId) email \(email)")
-               
-               let encodedUser = try Firestore.Encoder().encode(user)
-               // Create the document in firestore
-               try await Firestore.firestore().collection("users").document(userId).setData(encodedUser)
-               try await fetchCurrentUser()
-           } catch {
-               print(error)
-           }
-       }
-
-       func signIn(email: String, password: String) async {
-           do {
-               let result = try await Auth.auth().signIn(
-                   withEmail: email,
-                   password: password
-               )
-               self.userSession = result.user
-               try await fetchCurrentUser()
-               let userId = result.user.uid
-               let email = result.user.email
-               print("userId \(userId) email \(email)")
-           } catch {
-               print(error)
-           }
-       }
+        do {
+            let result = try await Auth.auth().createUser(
+                withEmail: email,
+                password: password
+            )
+            self.userSession = result.user
+            let user = User(id: result.user.uid, username: username, userEmail: email)
+            let userId = result.user.uid
+            let email = result.user.email
+            print("userId \(userId) email \(email)")
+            
+            let encodedUser = try Firestore.Encoder().encode(user)
+            // Create the document in firestore
+            try await Firestore.firestore().collection("users").document(userId).setData(encodedUser)
+            try await fetchCurrentUser()
+        } catch {
+            print(error)
+        }
+    }
+    
+    // Signs the user in
+    func signIn(email: String, password: String) async {
+        do {
+            let result = try await Auth.auth().signIn(
+                withEmail: email,
+                password: password
+            )
+            self.userSession = result.user
+            try await fetchCurrentUser()
+            let userId = result.user.uid
+            let email = result.user.email
+            print("userId \(userId) email \(email)")
+        } catch {
+            print(error)
+        }
+    }
     
     func signOut() {
         do {
@@ -83,13 +86,14 @@ class UserViewModel: ObservableObject {
         }
     }
     
-  
+    
     // For fetching a user for a post
     static func fetchUser(withUid uid: String) async throws -> User {
         let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
         return try snapshot.data(as: User.self)
     }
     
+    // Fetchs current user
     func fetchCurrentUser() async throws {
         self.userSession = Auth.auth().currentUser
         guard let uid = userSession?.uid else { return }
@@ -98,7 +102,7 @@ class UserViewModel: ObservableObject {
     }
     
     
-    
+    // Fetches all the users
     func fetchUsers() async throws -> [User] {
         guard let currentUid = Auth.auth().currentUser?.uid else { return [] }
         let snapshot = try await Firestore.firestore().collection("users").getDocuments()
@@ -112,6 +116,7 @@ class UserViewModel: ObservableObject {
         
     }
     
+    // Handles updating the user's profile image
     @MainActor
     private func loadImage() async {
         guard let item = selectedItem else { return }
@@ -129,7 +134,7 @@ class UserViewModel: ObservableObject {
     
     func updateUserProfileImage(withImageUrl imageUrl: String) async throws {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
-
+        
         try await Firestore.firestore().collection("users").document(currentUid).updateData([
             "profileImageUrl": imageUrl
         ])
